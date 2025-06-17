@@ -3,150 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MatchAGig.ai - Instantly Match Resumes with Jobs Using AI</title>
-    <meta name="description" content="Upload resumes and match candidates to job descriptions instantly with AI. Join our beta waitlist.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>MatchAGig.ai - AI-Powered Recruitment</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
+    <section id="hero" class="full-screen center-content">
+        <div class="hero-content">
             <h1>Instantly Match Resumes with Jobs Using AI</h1>
-            <p class="hero-subtitle">Quickly find the best candidates for every job, summarize why they're perfect, and instantly prepare personalized messages for employers.</p>
-            <a href="signup.html" class="cta-button">Join Beta Waitlist</a>
+            <p>Quickly find the best candidates for every job, summarize why they're perfect, and instantly prepare personalized messages for employers.</p>
+            <button class="primary" onclick="scrollToSignup()">Join Beta Waitlist</button>
         </div>
     </section>
 
-    <!-- Problem & Solution Section -->
-    <section class="problem-solution">
+    <!-- What Is It Section -->
+    <section id="what-is-it" class="two-column">
         <div class="container">
-            <div class="problem">
-                <h2>Challenges You Face</h2>
+            <!-- Left column -->
+            <div class="col">
+                <h3 class="cursive">Focus more on relationships and placements. Free your time to build client trust and close more deals.</h3>
+                <h4>Challenges You Face</h4>
                 <ul>
                     <li>Wasting hours reviewing irrelevant resumes</li>
                     <li>Struggling to explain to clients why specific candidates fit their roles</li>
                     <li>Spending valuable time writing repetitive candidate presentations and emails</li>
                 </ul>
             </div>
-            <div class="solution">
-                <h2>How MatchAGig.ai Helps You</h2>
+            <!-- Right column -->
+            <div class="col">
+                <h4>How MatchAGig.ai Helps You</h4>
                 <ul>
-                    <li><strong>Immediately find the best candidates.</strong><br>Spend less time searching and more time placing candidates.</li>
-                    <li><strong>Clearly explain why your candidate is the right match.</strong><br>Impress clients with tailored, easy-to-understand candidate summaries.</li>
-                    <li><strong>Create personalized emails and messages instantly.</strong><br>Quickly engage your clients without repetitive writing tasks.</li>
-                    <li><strong>Focus more on relationships and placements.</strong><br>Free your time to build client trust and close more deals.</li>
+                    <li><strong>Immediately find the best candidates.</strong> Spend less time searching and more time placing candidates.</li>
+                    <li><strong>Clearly explain why your candidate is the right match.</strong> Impress clients with tailored, easy-to-understand candidate summaries.</li>
+                    <li><strong>Create personalized emails and messages instantly.</strong> Quickly engage your clients without repetitive writing tasks.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works">
+    <section id="how-it-works">
         <div class="container">
             <h2>How It Works</h2>
-            <div class="steps">
+            <div class="flow-diagram">
                 <div class="step">
-                    <div class="step-icon">📁</div>
-                    <h3>Upload Your Resumes</h3>
-                    <p><strong>Keep all your candidates in one place.</strong><br>Effortlessly store resumes you've collected over the years and continuously add new candidates.</p>
+                    <h5>Upload Your Resumes</h5>
+                    <p class="step-title">Keep all your candidates in one place.</p>
+                    <p>Effortlessly store resumes you've collected over the years and continuously add new candidates.</p>
                 </div>
+                <div class="arrow">→</div>
                 <div class="step">
-                    <div class="step-icon">📋</div>
-                    <h3>Paste the Job Description</h3>
-                    <p><strong>Instantly see the best matches.</strong><br>Simply paste a job description and immediately discover the top candidates from your database.</p>
+                    <h5>Paste the Job Description</h5>
+                    <p class="step-title">Instantly see the best matches.</p>
+                    <p>Simply paste a job description and immediately discover the top candidates from your database.</p>
                 </div>
+                <div class="arrow">→</div>
                 <div class="step">
-                    <div class="step-icon">📝</div>
-                    <h3>Clear Candidate Summaries</h3>
-                    <p><strong>Explain exactly why they're a match.</strong><br>Get easy-to-understand summaries you can share directly with your clients to demonstrate candidate fit.</p>
+                    <h5>Clear Candidate Summaries</h5>
+                    <p class="step-title">Explain exactly why they're a match.</p>
+                    <p>Get easy-to-understand summaries you can share directly with your clients to demonstrate candidate fit.</p>
                 </div>
+                <div class="arrow">→</div>
                 <div class="step">
-                    <div class="step-icon">📧</div>
-                    <h3>Quick, Personalized Outreach</h3>
-                    <p><strong>Save time with instant emails.</strong><br>Generate ready-to-send messages to quickly connect with employers without the repetitive writing tasks.</p>
+                    <h5>Quick, Personalized Outreach</h5>
+                    <p class="step-title">Save time with instant emails.</p>
+                    <p>Generate ready-to-send messages to quickly connect with employers without the repetitive writing tasks.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section id="benefits">
         <div class="container">
             <h2>Benefits</h2>
-            <div class="benefits-grid">
+            <div class="grid-2x2">
                 <div class="benefit">
-                    <h3>Save Hours of Your Time</h3>
+                    <h5>Save Hours of Your Time</h5>
                     <p>Spend less time on paperwork and resume screening, more on making placements and engaging clients.</p>
                 </div>
                 <div class="benefit">
-                    <h3>Find Better Matches Faster</h3>
+                    <h5>Find Better Matches Faster</h5>
                     <p>Effortlessly identify the right candidates, every time, enhancing your reputation for quality placements.</p>
                 </div>
                 <div class="benefit">
-                    <h3>Impress Your Clients</h3>
+                    <h5>Impress Your Clients</h5>
                     <p>Clearly show why your recommended candidates fit perfectly, making your value easy to see.</p>
                 </div>
                 <div class="benefit">
-                    <h3>Get Exclusive Early Access</h3>
+                    <h5>Get Exclusive Early Access</h5>
                     <p>Early adopters receive exclusive early and free access to test the platform.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Call-to-Action Section -->
+    <section id="cta">
         <div class="container">
             <h2>Ready to Transform Your Recruitment Process?</h2>
-            <p>Join our beta waitlist and be among the first to experience AI-powered recruitment</p>
-            <a href="signup.html" class="cta-button">Join Beta Waitlist</a>
+            <p>Join our beta waitlist and be among the first to experience AI-powered recruitment.</p>
+            <button class="primary" onclick="scrollToSignup()">Join Beta Waitlist</button>
         </div>
     </section>
 
-    <!-- Technical Details Section -->
-    <section class="tech-section">
+    <!-- Tech & T&C Section -->
+    <section id="tech">
         <div class="container">
-            <h2>For the Tech Interested</h2>
-            <div class="tech-grid">
-                <div class="tech-feature">
-                    <h3>Advanced Resume Parsing</h3>
-                    <p>Utilizing cutting-edge natural language processing (NLP) models to intelligently analyze, structure, and categorize resume data, ensuring precise understanding of candidate profiles.</p>
-                </div>
-                <div class="tech-feature">
-                    <h3>Semantic Vector Matching</h3>
-                    <p>Applying sophisticated semantic embedding techniques within a scalable vector database to deliver highly accurate matches between candidates and job descriptions beyond simple keyword searches.</p>
-                </div>
-                <div class="tech-feature">
-                    <h3>Automated Content Generation</h3>
-                    <p>Generating detailed candidate summaries and personalized outreach messages through advanced generative AI models, enabling tailored, high-quality communication at scale.</p>
-                </div>
-                <div class="tech-feature">
-                    <h3>Robust Data Security and Automation</h3>
-                    <p>Secure, scalable backend infrastructure with automated workflows to ensure smooth, safe handling and processing of recruiter and candidate data.</p>
-                </div>
+            <h4>For the Tech Interested</h4>
+            <ul>
+                <li>
+                    <strong>Advanced Resume Parsing</strong><br/>
+                    Utilizing cutting-edge natural language processing (NLP) models to intelligently analyze, structure, and categorize resume data, ensuring precise understanding of candidate profiles.
+                </li>
+                <li>
+                    <strong>Semantic Vector Matching</strong><br/>
+                    Applying sophisticated semantic embedding techniques within a scalable vector database to deliver highly accurate matches between candidates and job descriptions beyond simple keyword searches.
+                </li>
+                <li>
+                    <strong>Automated Content Generation</strong><br/>
+                    Generating detailed candidate summaries and personalized outreach messages through advanced generative AI models, enabling tailored, high-quality communication at scale.
+                </li>
+                <li>
+                    <strong>Robust Data Security and Automation</strong><br/>
+                    Secure, scalable backend infrastructure with automated workflows to ensure smooth, safe handling and processing of recruiter and candidate data.
+                </li>
+            </ul>
+
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/terms">Terms of Service</a> | 
+                © 2024 MatchAGig.ai. All Rights Reserved.
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="logo">MatchAGig.ai</div>
-                <div class="footer-links">
-                    <a href="/privacy-policy">Privacy Policy</a>
-                    <a href="/terms-of-service">Terms of Service</a>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 MatchAGig.ai. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
+    <script>
+        function scrollToSignup() {
+            document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html> 
