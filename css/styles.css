@@ -157,10 +157,12 @@ body {
 }
 
 .flow-diagram {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .step {
@@ -198,6 +200,7 @@ body {
     font-size: 2rem;
     color: #667eea;
     font-weight: bold;
+    transform: rotate(90deg);
 }
 
 /* Benefits Section */
@@ -310,27 +313,6 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .flow-diagram {
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: auto auto;
-    }
-    
-    .flow-diagram .step:nth-child(3),
-    .flow-diagram .step:nth-child(7) {
-        grid-column: 1;
-    }
-    
-    .flow-diagram .step:nth-child(4),
-    .flow-diagram .step:nth-child(8) {
-        grid-column: 2;
-    }
-    
-    .flow-diagram .step:nth-child(1),
-    .flow-diagram .step:nth-child(5) {
-        grid-column: 3;
-    }
-}
 
 @media (max-width: 768px) {
     #hero h1 {
@@ -347,13 +329,7 @@ body {
     }
     
     .flow-diagram {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .arrow {
-        transform: rotate(90deg);
-        margin: 1rem 0;
+        gap: 1.5rem;
     }
     
     .grid-2x2 {
