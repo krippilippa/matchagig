@@ -156,14 +156,14 @@ body {
 
 /* How It Works Section */
 #how-it-works {
-    padding: 5rem 0;
+    padding: 3rem 0;
     background: white;
 }
 
 #how-it-works h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     color: #333;
     font-weight: 700;
 }
@@ -171,7 +171,7 @@ body {
 .flow-diagram {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     max-width: 600px;
     margin: 0 auto;
@@ -179,20 +179,27 @@ body {
 
 .step {
     background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 15px;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
+    max-width: 420px;
+    width: 100%;
 }
 
 .step:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+}
+
+.step-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .step h5 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
     color: #333;
     font-weight: 600;
 }
@@ -200,19 +207,24 @@ body {
 .step .step-title {
     font-weight: 600;
     color: #667eea;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
 }
 
 .step p {
     color: #666;
-    line-height: 1.5;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 .arrow {
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: #667eea;
     font-weight: bold;
     transform: rotate(90deg);
+    opacity: 0.6;
+    margin: 0.3rem 0;
 }
 
 /* Benefits Section */
@@ -369,7 +381,8 @@ body {
     }
     
     .flow-diagram {
-        gap: 1.5rem;
+        gap: 0.8rem;
+        max-width: 90%;
     }
     
     .grid-2x2 {
@@ -378,7 +391,25 @@ body {
     }
     
     .step {
-        padding: 1.5rem;
+        padding: 1rem 1.2rem;
+        max-width: 100%;
+    }
+    
+    .step h5 {
+        font-size: 1.1rem;
+    }
+    
+    .step-emoji {
+        font-size: 1.8rem;
+    }
+    
+    #how-it-works {
+        padding: 2.5rem 0;
+    }
+    
+    #how-it-works h2 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
     }
     
     .benefit {
@@ -408,8 +439,43 @@ body {
         font-size: 1rem;
     }
     
-    #hero, #how-it-works, #benefits {
+    #hero, #benefits {
         padding: 3rem 0;
+    }
+    
+    #how-it-works {
+        padding: 2rem 0;
+    }
+    
+    #how-it-works h2 {
+        font-size: 1.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .step {
+        padding: 0.9rem 1rem;
+    }
+    
+    .step h5 {
+        font-size: 1rem;
+    }
+    
+    .step-emoji {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .step .step-title {
+        font-size: 0.85rem;
+    }
+    
+    .step p {
+        font-size: 0.85rem;
+    }
+    
+    .arrow {
+        font-size: 1rem;
+        margin: 0.2rem 0;
     }
     
     .problem-solution-section, #cta {
