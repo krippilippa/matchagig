@@ -1,6 +1,6 @@
-# MatchAGig.ai Landing Page
+# MatchAGig.com Landing Page
 
-A modern, responsive landing page for MatchAGig.ai - an AI-powered recruitment platform that instantly matches resumes with job descriptions.
+A modern, responsive landing page for MatchAGig.com - an AI-powered recruitment platform that instantly matches resumes with job descriptions.
 
 ## Features
 
@@ -73,4 +73,4 @@ matchagig-landing/
 
 ## License
 
-© 2024 MatchAGig.ai. All Rights Reserved. 
+© 2025 MatchAGig.com. All Rights Reserved. 
