@@ -352,7 +352,7 @@ body {
 
 #tech ul {
     list-style: none;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
 }
 
 #tech li {
@@ -362,6 +362,12 @@ body {
 
 #tech li strong {
     color: #667eea;
+}
+
+/* Footer Section */
+#footer {
+    padding: 2rem 0;
+    background: #f8f9fa;
 }
 
 .footer-links {
