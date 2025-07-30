@@ -127,14 +127,16 @@ body {
     display: block;
 }
 
-/* Secondary Feature Section */
-.feature-showcase-section {
+/* Feature Sections (Secondary & Emails) */
+.feature-showcase-section,
+.emails-showcase-section {
     background: white;
     padding: 8rem 1rem 6rem;
     text-align: center;
 }
 
-.feature-showcase-section h2 {
+.feature-showcase-section h2,
+.emails-showcase-section h2 {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -145,7 +147,8 @@ body {
     line-height: 1.1;
 }
 
-.feature-showcase-section p {
+.feature-showcase-section p,
+.emails-showcase-section p {
     font-size: 1.3rem;
     margin-bottom: 4rem;
     color: #666;
@@ -165,7 +168,18 @@ body {
     width: 100%;
 }
 
-.feature-product-image {
+.emails-product-showcase {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #764BA2 100%);
+    border-radius: 24px;
+    padding: 3rem 3rem 0;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+    max-width: 95%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.feature-product-image,
+.emails-product-image {
     width: 100%;
     height: auto;
     border-radius: 12px 12px 0 0;
@@ -724,26 +738,31 @@ body {
         border-bottom: none;
     }
     
-    .feature-showcase-section {
+    .feature-showcase-section,
+    .emails-showcase-section {
         padding: 6rem 0.5rem 4rem;
     }
     
-    .feature-showcase-section h2 {
+    .feature-showcase-section h2,
+    .emails-showcase-section h2 {
         font-size: 2.5rem;
     }
     
-    .feature-showcase-section p {
+    .feature-showcase-section p,
+    .emails-showcase-section p {
         font-size: 1.1rem;
         margin-bottom: 3rem;
     }
     
-    .feature-product-showcase {
+    .feature-product-showcase,
+    .emails-product-showcase {
         padding: 2rem 2rem 0;
         border-radius: 20px;
         max-width: 98%;
     }
     
-    .feature-product-image {
+    .feature-product-image,
+    .emails-product-image {
         border-radius: 8px 8px 0 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         border-bottom: none;
@@ -835,20 +854,24 @@ body {
         margin-bottom: 2rem;
     }
     
-    .feature-showcase-section {
+    .feature-showcase-section,
+    .emails-showcase-section {
         padding: 4rem 0.25rem 3rem;
     }
     
-    .feature-showcase-section h2 {
+    .feature-showcase-section h2,
+    .emails-showcase-section h2 {
         font-size: 2rem;
     }
     
-    .feature-showcase-section p {
+    .feature-showcase-section p,
+    .emails-showcase-section p {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
     
-    .feature-product-showcase {
+    .feature-product-showcase,
+    .emails-product-showcase {
         padding: 1.5rem 1.5rem 0;
         border-radius: 16px;
         max-width: 99%;
