@@ -20,44 +20,38 @@ body {
 }
 
 /* Hero Section */
-#hero {
+.hero-cursor-style {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
     position: relative;
     overflow: hidden;
 }
 
-.full-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.center-content {
-    text-align: center;
-}
-
 .hero-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-#hero h1 {
-    font-size: 3.5rem;
+.hero-cursor-style h1 {
+    font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-#hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.9;
-    max-width: 600px;
+    line-height: 1.1;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-cursor-style p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
 }
 
 /* Buttons */
@@ -106,7 +100,23 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.product-showcase {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
 }
 
 /* Pain Amplifier Section */
@@ -622,21 +632,33 @@ body {
 /* Responsive Design */
 
 @media (max-width: 768px) {
-    #hero h1 {
+    .hero-cursor-style {
+        padding: 4rem 1rem 3rem;
+    }
+    
+    .hero-cursor-style h1 {
         font-size: 2.5rem;
     }
     
-    #hero p {
+    .hero-cursor-style p {
         font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
     
     .hero-ctas {
         flex-direction: column;
         gap: 1rem;
+        margin-bottom: 3rem;
     }
     
-    .secondary {
-        margin-left: 0 !important;
+    .product-showcase {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .product-image {
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
     }
     
     .recruiter-quote {
@@ -702,8 +724,21 @@ body {
 }
 
 @media (max-width: 480px) {
-    #hero h1 {
+    .hero-cursor-style {
+        padding: 3rem 1rem 2rem;
+    }
+    
+    .hero-cursor-style h1 {
         font-size: 2rem;
+    }
+    
+    .hero-cursor-style p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-ctas {
+        margin-bottom: 2rem;
     }
     
     .primary {
@@ -716,7 +751,7 @@ body {
         font-size: 1rem;
     }
     
-    #hero, #benefits, .pain-amplifier-section {
+    #benefits, .pain-amplifier-section {
         padding: 3rem 0;
     }
     
