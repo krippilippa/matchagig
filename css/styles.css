@@ -21,18 +21,20 @@ body {
 
 /* Hero Section */
 .hero-cursor-style {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 6rem 2rem 4rem;
+    background: #f8f9fa;
+    padding: 4rem 2rem;
     text-align: center;
-    position: relative;
-    overflow: hidden;
 }
 
 .hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    color: white;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
 }
+
+
 
 .hero-cursor-style h1 {
     font-size: 4rem;
@@ -42,12 +44,13 @@ body {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    color: white;
 }
 
 .hero-cursor-style p {
     font-size: 1.3rem;
     margin-bottom: 3rem;
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.9);
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -105,7 +108,7 @@ body {
 }
 
 .product-showcase {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
 }
@@ -113,9 +116,9 @@ body {
 .product-image {
     width: 100%;
     height: auto;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     background: white;
 }
 
@@ -633,7 +636,12 @@ body {
 
 @media (max-width: 768px) {
     .hero-cursor-style {
-        padding: 4rem 1rem 3rem;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-content {
+        padding: 3rem 1.5rem;
+        border-radius: 20px;
     }
     
     .hero-cursor-style h1 {
@@ -653,12 +661,11 @@ body {
     
     .product-showcase {
         max-width: 100%;
-        padding: 0 1rem;
     }
     
     .product-image {
-        border-radius: 12px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
     
     .recruiter-quote {
@@ -725,7 +732,12 @@ body {
 
 @media (max-width: 480px) {
     .hero-cursor-style {
-        padding: 3rem 1rem 2rem;
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .hero-content {
+        padding: 2.5rem 1rem;
+        border-radius: 16px;
     }
     
     .hero-cursor-style h1 {
