@@ -21,17 +21,20 @@ body {
 
 /* Hero Section */
 .hero-cursor-style {
-    background: #f8f9fa;
-    padding: 4rem 2rem;
+    background: white;
+    padding: 6rem 1rem 4rem;
     text-align: center;
 }
 
 .hero-content {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 24px;
-    padding: 4rem 2rem;
+    padding: 4rem 4rem 0;
     color: white;
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+    max-width: 95%;
+    margin: 0 auto;
+    width: 100%;
 }
 
 
@@ -104,11 +107,11 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .product-showcase {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
 }
@@ -116,10 +119,12 @@ body {
 .product-image {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
     background: white;
+    display: block;
 }
 
 /* Pain Amplifier Section */
@@ -636,12 +641,13 @@ body {
 
 @media (max-width: 768px) {
     .hero-cursor-style {
-        padding: 2rem 1rem;
+        padding: 4rem 0.5rem 3rem;
     }
     
     .hero-content {
-        padding: 3rem 1.5rem;
+        padding: 3rem 2rem 0;
         border-radius: 20px;
+        max-width: 98%;
     }
     
     .hero-cursor-style h1 {
@@ -664,8 +670,9 @@ body {
     }
     
     .product-image {
-        border-radius: 8px;
+        border-radius: 8px 8px 0 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        border-bottom: none;
     }
     
     .recruiter-quote {
@@ -732,12 +739,13 @@ body {
 
 @media (max-width: 480px) {
     .hero-cursor-style {
-        padding: 1.5rem 0.5rem;
+        padding: 3rem 0.25rem 2rem;
     }
     
     .hero-content {
-        padding: 2.5rem 1rem;
+        padding: 2.5rem 1.5rem 0;
         border-radius: 16px;
+        max-width: 99%;
     }
     
     .hero-cursor-style h1 {
