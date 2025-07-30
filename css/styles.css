@@ -81,77 +81,182 @@ body {
     box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
 }
 
-/* Problem Solution Section */
-.problem-solution-section {
+.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+.hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Pain Amplifier Section */
+.pain-amplifier-section {
     padding: 5rem 0;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.recruiter-quote {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-left: 4px solid #667eea;
+}
+
+.recruiter-quote p {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.recruiter-quote cite {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.pain-amplifier-section h3 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.pain-comparison-table {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.pain-comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pain-comparison-table th {
+    background: #667eea;
+    color: white;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.pain-comparison-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.pain-comparison-table tr:nth-child(even) {
     background: #f8f9fa;
 }
 
-.teaser-text {
+.pain-comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.pain-cta {
+    margin-top: 2rem;
+}
+
+/* Instant Proof Section */
+.instant-proof-section {
+    padding: 5rem 0;
+    background: white;
     text-align: center;
-    margin-bottom: 4rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.teaser-text .cursive {
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    font-size: 1.3rem;
-    color: #555;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0 2rem;
-}
-
-.problem-solution-grid {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.grid-headers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 2rem;
-}
-
-.problem-header, .solution-header {
-    font-size: 1.5rem;
+.instant-proof-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
     color: #333;
     font-weight: 600;
-    margin: 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.3;
 }
 
-.problem-solution-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 2rem;
-    align-items: start;
+.demo-placeholder {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    border: 2px dashed #ddd;
 }
 
-.problem, .solution {
+.demo-visual {
     display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 1rem;
-    line-height: 1.6;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.problem-icon {
-    color: #f44336;
-    font-weight: bold;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
+.demo-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
 }
 
-.solution-icon {
-    color: #4caf50;
+.demo-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.demo-step span:last-child {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.demo-arrow {
+    font-size: 1.5rem;
+    color: #667eea;
     font-weight: bold;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
+}
+
+.demo-note {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* How It Works Section */
@@ -185,112 +290,162 @@ body {
 #how-it-works h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     color: #333;
     font-weight: 700;
 }
 
-.flow-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    max-width: 600px;
+.workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.step {
+.workflow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
     background: #f8f9fa;
-    padding: 1.2rem 1.5rem;
     border-radius: 12px;
-    text-align: center;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
-    max-width: 420px;
-    width: 100%;
 }
 
-.step:hover {
+.workflow-step:hover {
     transform: translateY(-3px);
 }
 
-.step-emoji {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+.step-number {
+    background: #667eea;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
-.step h5 {
+.step-content h4 {
     font-size: 1.2rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
     color: #333;
     font-weight: 600;
 }
 
-.step .step-title {
-    font-weight: 600;
-    color: #667eea;
-    margin-bottom: 0.3rem;
-    font-size: 0.95rem;
-}
-
-.step p {
+.step-content p {
     color: #666;
-    line-height: 1.4;
-    font-size: 0.9rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
     margin: 0;
 }
 
-.arrow {
-    font-size: 1.3rem;
-    color: #667eea;
-    font-weight: bold;
-    transform: rotate(90deg);
-    opacity: 0.6;
-    margin: 0.3rem 0;
-}
-
-/* Benefits Section */
+/* Core Benefits Section */
 #benefits {
     padding: 5rem 0;
     background: #f8f9fa;
 }
 
-#benefits h2 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 4rem;
-    color: #333;
-    font-weight: 700;
-}
-
-.grid-2x2 {
+.benefits-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin: 0 auto;
-}
-
-.benefit {
-    max-width: 380px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
     margin-bottom: 3rem;
 }
 
-.benefit h5 {
-    font-size: 1.45rem;
-    font-weight: 400;
+.benefit {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.benefit:hover {
+    transform: translateY(-5px);
+}
+
+.benefit h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    line-height: 1.4;
+    color: #333;
+    line-height: 1.3;
 }
 
-.benefit h5 .highlight {
-    font-weight: 700;
-}
-
-.benefit-description {
+.benefit p {
     font-size: 1rem;
     line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+.inline-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Social Proof Section */
+.social-proof-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.proof-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+.stat {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.stat-text {
+    font-size: 1rem;
+    line-height: 1.5;
     color: #333;
-    max-width: 90%;
+}
+
+.stat-text strong {
+    color: #667eea;
+}
+
+.stat-text em {
+    color: #666;
+    font-style: italic;
+}
+
+.trusted-logos {
+    padding: 1rem;
+}
+
+.trusted-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.company-names {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    font-style: italic;
 }
 
 /* Call to Action Section */
@@ -311,6 +466,23 @@ body {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
     opacity: 0.9;
+}
+
+.beta-cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scarcity-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Bottom Call to Action Section */
@@ -343,31 +515,91 @@ body {
     font-size: 0.9rem;
 }
 
-#tech h4 {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    color: #333;
-    font-weight: 600;
+.tech-accordion {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#tech ul {
+.tech-accordion summary {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease;
+}
+
+.tech-accordion summary:hover {
+    background: #e9ecef;
+}
+
+.tech-content {
+    padding: 1.5rem;
+    background: white;
+}
+
+.tech-content ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tech-content li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.tech-content li:last-child {
     margin-bottom: 0;
 }
 
-#tech li {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+.tech-content li strong {
+    color: #667eea;
 }
 
-#tech li strong {
-    color: #667eea;
+.tech-content li em {
+    color: #666;
 }
 
 /* Footer Section */
 #footer {
-    padding: 2rem 0;
+    padding: 3rem 0 2rem;
     background: #f8f9fa;
+}
+
+.trust-compliance {
+    margin-bottom: 2rem;
+}
+
+.compliance-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.compliance-items span {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.compliance-items span:before {
+    content: "✓";
+    color: #4caf50;
+    font-weight: bold;
+    margin-right: 0.5rem;
 }
 
 .footer-links {
@@ -398,74 +630,70 @@ body {
         font-size: 1.1rem;
     }
     
-    .grid-headers {
+    .hero-ctas {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .secondary {
+        margin-left: 0 !important;
+    }
+    
+    .recruiter-quote {
+        padding: 2rem 1.5rem;
+    }
+    
+    .recruiter-quote p {
+        font-size: 1.2rem;
+    }
+    
+    .pain-comparison-table th,
+    .pain-comparison-table td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .instant-proof-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .demo-visual {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .demo-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .workflow-steps {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        text-align: center;
     }
     
-    .problem-solution-pair {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
-    }
-    
-    .problem-header {
-        margin-bottom: 1rem;
-    }
-    
-    .solution-header {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .teaser-text .cursive {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-    
-    .flow-diagram {
-        gap: 0.8rem;
-        max-width: 90%;
-    }
-    
-    .grid-2x2 {
+    .benefits-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
     
-    .step {
-        padding: 1rem 1.2rem;
-        max-width: 100%;
+    .proof-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
-    .step h5 {
-        font-size: 1.1rem;
+    .beta-cta-container {
+        gap: 1rem;
     }
     
-    .step-emoji {
-        font-size: 1.8rem;
-    }
-    
-    #how-it-works {
-        padding: 2.5rem 0;
+    .compliance-items {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
     }
     
     #how-it-works h2 {
         font-size: 2.2rem;
         margin-bottom: 2rem;
-    }
-    
-    .benefit {
-        padding: 2rem;
-    }
-    
-    .benefit h5 {
-        font-size: 1.2rem;
-    }
-    
-    #benefits h2 {
-        font-size: 2.2rem;
     }
     
     .container {
@@ -483,8 +711,33 @@ body {
         font-size: 1rem;
     }
     
-    #hero, #benefits {
+    .secondary {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    #hero, #benefits, .pain-amplifier-section {
         padding: 3rem 0;
+    }
+    
+    .recruiter-quote {
+        padding: 1.5rem 1rem;
+    }
+    
+    .recruiter-quote p {
+        font-size: 1.1rem;
+    }
+    
+    .pain-amplifier-section h3 {
+        font-size: 1.6rem;
+    }
+    
+    .instant-proof-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .demo-placeholder {
+        padding: 2rem 1rem;
     }
     
     #how-it-works {
@@ -496,42 +749,34 @@ body {
         margin-bottom: 1.5rem;
     }
     
-    .step {
-        padding: 0.9rem 1rem;
+    .workflow-step {
+        padding: 1rem;
     }
     
-    .step h5 {
+    .step-number {
+        width: 2rem;
+        height: 2rem;
         font-size: 1rem;
     }
     
-    .step-emoji {
-        font-size: 1.6rem;
-        margin-bottom: 0.3rem;
+    .benefit {
+        padding: 1.5rem;
     }
     
-    .step .step-title {
-        font-size: 0.85rem;
+    .benefit h3 {
+        font-size: 1.2rem;
     }
     
-    .step p {
-        font-size: 0.85rem;
+    .stat-number {
+        font-size: 2.5rem;
     }
     
-    .arrow {
-        font-size: 1rem;
-        margin: 0.2rem 0;
-    }
-    
-    .problem-solution-section, #cta {
+    #cta, .social-proof-section {
         padding: 3rem 0;
     }
     
-    .benefit h5 {
-        font-size: 1.1rem;
-    }
-    
-    #benefits h2 {
-        font-size: 2rem;
+    #cta h2 {
+        font-size: 1.8rem;
     }
 }
 
