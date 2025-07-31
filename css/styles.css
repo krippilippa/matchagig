@@ -901,6 +901,40 @@ body {
         text-align: center;
     }
     
+    /* Responsive testimonials */
+    .recruiter-validation-section {
+        padding: 6rem 0.5rem 4rem;
+    }
+    
+    .recruiter-validation-section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .recruiter-validation-section p {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .testimonials-container {
+        height: 260px;
+    }
+    
+    .testimonials-container::before,
+    .testimonials-container::after {
+        width: 80px;
+    }
+    
+    .testimonial-card {
+        flex: 0 0 300px;
+        height: 200px;
+        padding: 1.5rem;
+        padding-top: 2.5rem;
+    }
+    
+    .testimonial-card p {
+        font-size: 0.9rem;
+    }
+    
     #how-it-works h2 {
         font-size: 2.2rem;
         margin-bottom: 2rem;
@@ -1052,6 +1086,44 @@ body {
     #cta h2 {
         font-size: 1.8rem;
     }
+    
+    /* Small mobile testimonials */
+    .recruiter-validation-section {
+        padding: 4rem 0.25rem 3rem;
+    }
+    
+    .recruiter-validation-section h2 {
+        font-size: 2rem;
+    }
+    
+    .recruiter-validation-section p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .testimonials-container {
+        height: 220px;
+    }
+    
+    .testimonials-container::before,
+    .testimonials-container::after {
+        width: 60px;
+    }
+    
+    .testimonial-card {
+        flex: 0 0 260px;
+        height: 180px;
+        padding: 1.25rem;
+        padding-top: 2.25rem;
+    }
+    
+    .testimonial-card p {
+        font-size: 0.85rem;
+    }
+    
+    .testimonial-card cite {
+        font-size: 0.75rem;
+    }
 }
 
 /* Animation for smooth scrolling elements */
@@ -1076,4 +1148,147 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Recruiter Validation Testimonials Section */
+.recruiter-validation-section {
+    background: #f8f9fa;
+    padding: 8rem 1rem 6rem;
+    text-align: center;
+}
+
+.recruiter-validation-section h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.1;
+}
+
+.recruiter-validation-section p {
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+    color: #666;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.testimonials-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 16px;
+}
+
+/* Fade effect on edges */
+.testimonials-container::before,
+.testimonials-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.testimonials-container::before {
+    left: 0;
+    background: linear-gradient(to right, #f8f9fa 0%, rgba(248, 249, 250, 0.8) 50%, transparent 100%);
+}
+
+.testimonials-container::after {
+    right: 0;
+    background: linear-gradient(to left, #f8f9fa 0%, rgba(248, 249, 250, 0.8) 50%, transparent 100%);
+}
+
+.testimonials-scroll {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-testimonials 60s linear infinite;
+    width: max-content;
+    height: 100%;
+    align-items: center;
+}
+
+/* Duplicate content for seamless loop */
+.testimonials-scroll::after {
+    content: '';
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+}
+
+@keyframes scroll-testimonials {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.testimonial-card {
+    flex: 0 0 350px;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 2rem 2rem 2rem;
+    padding-top: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+}
+
+.testimonial-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.testimonial-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.testimonial-card cite {
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 500;
+    font-style: normal;
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+/* Pause animation on hover */
+.testimonials-container:hover .testimonials-scroll {
+    animation-play-state: paused;
 } 
