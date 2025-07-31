@@ -916,7 +916,7 @@ body {
     }
     
     .testimonials-container {
-        height: 260px;
+        height: 310px;
     }
     
     .testimonials-container::before,
@@ -926,7 +926,7 @@ body {
     
     .testimonial-card {
         flex: 0 0 300px;
-        height: 200px;
+        height: 250px;
         padding: 1.5rem;
         padding-top: 2.5rem;
     }
@@ -1102,7 +1102,7 @@ body {
     }
     
     .testimonials-container {
-        height: 220px;
+        height: 270px;
     }
     
     .testimonials-container::before,
@@ -1112,7 +1112,7 @@ body {
     
     .testimonial-card {
         flex: 0 0 260px;
-        height: 180px;
+        height: 230px;
         padding: 1.25rem;
         padding-top: 2.25rem;
     }
@@ -1181,7 +1181,7 @@ body {
 .testimonials-container {
     position: relative;
     width: 100vw;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
     margin-left: calc(-50vw + 50%);
     border-radius: 0;
@@ -1212,7 +1212,7 @@ body {
 .testimonials-scroll {
     display: flex;
     gap: 2rem;
-    animation: scroll-testimonials 60s linear infinite;
+    animation: scroll-testimonials 40s linear infinite;
     width: max-content;
     height: 100%;
     align-items: center;
@@ -1243,7 +1243,7 @@ body {
     padding-top: 3rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    height: 240px;
+    height: 290px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
