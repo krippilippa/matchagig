@@ -1,0 +1,16 @@
+Overwhelming Number of Job Applications/Resumes
+* “Some recruiters are overwhelmed by too many applications. Also frustrated by direct messages. Also annoyed by email follow-ups. Also disillusioned by AI-generated resumes. In short: the internet is doing exactly what it was built to do—at scale.” — Matthew McGrath, recruiting professional (LinkedIn post)
+* “I’ve been in the same boat, and manually screening thousands of resumes is downright exhausting.” — Reddit user Minute-Lion-5744 (recruiter on an r/Recruitment thread)
+* “Recruiters are often overwhelmed, and applicant tracking systems (ATS) can filter out strong resumes just because of formatting or keywords.” — Senior Executive Recruitment Consultant (Glassdoor community forum)
+Frustration with Manual Resume Review & Shortlisting
+* “I recently had to go through the process of shortlisting resumes, and honestly, I hated the experience of using tools like Rippling and Workable. These platforms barely had basic filtration and nowhere near matching skills or industry-specific searches. … I really want to find the right candidates, but I can’t manually go through so many resumes while also fearing I’ll miss out on the perfect candidate.” — Reddit user Adig_22 (talent acquisition professional, r/Recruitment post)
+* “I would say less than 10% [of recruiters] would actually waste time putting eyes on 1000 resumes.” — Reddit user bufy525 (recruiter discussing high-volume hiring)
+Difficulty Writing Personalized Outreach & Follow-Up Emails
+* “10:30 AM: Writing outreach emails one by one, hoping they stand out in the sea of pitches your potential clients receive.” — Fabian Herhold, agency recruiter (humorous LinkedIn post on a day-in-the-life)
+* “LinkedIn outreach with personalization actually works. But you gotta spend at least 10 minutes to research and draft a message for every prospect, so it is time consuming.” — Reddit user Ammaramehdghani (agency recruiter/founder, on r/RecruitmentAgencies)
+Repetitive Candidate Presentations & Summaries for Clients
+* “The summary feature [of our AI] wraps candidate information into a bulleted format for our recruiters, so they can easily use the information when marketing candidates to clients. It saves them time from having to research a bunch of stuff to create summarizations of these 20-page resumes in five bullets.” — Will Hayes, COO at IDR (staffing agency), in a Bullhorn case study
+* “AI cuts down on the time it takes to write a candidate’s blurb. … I used AI to gather more information and write a killer blurb! So, I’m getting more candidates to the interviews, quicker.” — Javar Manning, Recruiting Manager (Miller Brothers Recruiting), on using AI for candidate summaries
+Inefficient Workflows & Poorly Integrated Tools
+* “Most ATS systems have a barely functional UI let alone AI.” — Reddit user nerdybro1 (corporate recruiter venting on r/recruiting)
+* “I’ve been in this position a few times. One included multiple spreadsheets from recruiting, finance and the business. It was a mess so I feel your pain.” — Reddit user Notyou76 (talent acquisition professional, discussing internal processes)
