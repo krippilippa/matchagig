@@ -494,7 +494,7 @@ body {
     
     /* Responsive testimonials */
     .testimonials-container {
-        height: 310px;
+        height: 350px;
     }
     
     /* Remove fade effects on mobile */
@@ -505,7 +505,7 @@ body {
     
     .testimonial-card {
         flex: 0 0 300px;
-        height: 250px;
+        height: 310px;
         padding: 1.5rem;
         padding-top: 2.8rem;
     }
@@ -519,6 +519,11 @@ body {
     
     .testimonial-card p {
         font-size: 0.9rem;
+    }
+    
+    /* Slow down animation on mobile */
+    .testimonials-scroll {
+        animation: scroll-testimonials 80s linear infinite;
     }
     
     .compliance-items {
@@ -607,7 +612,7 @@ body {
     
     /* Small mobile testimonials */
     .testimonials-container {
-        height: 270px;
+        height: 320px;
     }
     
     /* Keep fade effects removed on small mobile */
@@ -618,7 +623,7 @@ body {
     
     .testimonial-card {
         flex: 0 0 260px;
-        height: 230px;
+        height: 280px;
         padding: 1.25rem;
         padding-top: 2.5rem;
     }
@@ -636,6 +641,11 @@ body {
     
     .testimonial-card cite {
         font-size: 0.75rem;
+    }
+    
+    /* Extra slow on very small mobile */
+    .testimonials-scroll {
+        animation: scroll-testimonials 100s linear infinite;
     }
 }
 
