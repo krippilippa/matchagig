@@ -921,7 +921,7 @@ body {
     
     .testimonials-container::before,
     .testimonials-container::after {
-        width: 80px;
+        width: 120px;
     }
     
     .testimonial-card {
@@ -1107,7 +1107,7 @@ body {
     
     .testimonials-container::before,
     .testimonials-container::after {
-        width: 60px;
+        width: 100px;
     }
     
     .testimonial-card {
@@ -1180,11 +1180,11 @@ body {
 
 .testimonials-container {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 300px;
     overflow: hidden;
-    margin: 0 auto;
-    border-radius: 16px;
+    margin-left: calc(-50vw + 50%);
+    border-radius: 0;
 }
 
 /* Fade effect on edges */
@@ -1194,7 +1194,7 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 150px;
+    width: 200px;
     z-index: 10;
     pointer-events: none;
 }
