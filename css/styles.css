@@ -138,7 +138,8 @@ body {
 
 .feature-showcase-section h2,
 .emails-showcase-section h2,
-.beta-cta-showcase-section h2 {
+.beta-cta-showcase-section h2,
+.recruiter-validation-section h2 {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -151,7 +152,8 @@ body {
 
 .feature-showcase-section p,
 .emails-showcase-section p,
-.beta-cta-showcase-section p {
+.beta-cta-showcase-section p,
+.recruiter-validation-section p {
     font-size: 1.3rem;
     margin-bottom: 4rem;
     color: #666;
@@ -807,19 +809,22 @@ body {
     
     .feature-showcase-section,
     .emails-showcase-section,
-    .beta-cta-showcase-section {
+    .beta-cta-showcase-section,
+    .recruiter-validation-section {
         padding: 6rem 0.5rem 4rem;
     }
     
     .feature-showcase-section h2,
     .emails-showcase-section h2,
-    .beta-cta-showcase-section h2 {
+    .beta-cta-showcase-section h2,
+    .recruiter-validation-section h2 {
         font-size: 2.5rem;
     }
     
     .feature-showcase-section p,
     .emails-showcase-section p,
-    .beta-cta-showcase-section p {
+    .beta-cta-showcase-section p,
+    .recruiter-validation-section p {
         font-size: 1.1rem;
         margin-bottom: 3rem;
     }
@@ -902,26 +907,15 @@ body {
     }
     
     /* Responsive testimonials */
-    .recruiter-validation-section {
-        padding: 6rem 0.5rem 4rem;
-    }
-    
-    .recruiter-validation-section h2 {
-        font-size: 2.5rem;
-    }
-    
-    .recruiter-validation-section p {
-        font-size: 1.1rem;
-        margin-bottom: 3rem;
-    }
     
     .testimonials-container {
         height: 310px;
     }
     
+    /* Remove fade effects on mobile */
     .testimonials-container::before,
     .testimonials-container::after {
-        width: 120px;
+        display: none;
     }
     
     .testimonial-card {
@@ -971,19 +965,22 @@ body {
     
     .feature-showcase-section,
     .emails-showcase-section,
-    .beta-cta-showcase-section {
+    .beta-cta-showcase-section,
+    .recruiter-validation-section {
         padding: 4rem 0.25rem 3rem;
     }
     
     .feature-showcase-section h2,
     .emails-showcase-section h2,
-    .beta-cta-showcase-section h2 {
+    .beta-cta-showcase-section h2,
+    .recruiter-validation-section h2 {
         font-size: 2rem;
     }
     
     .feature-showcase-section p,
     .emails-showcase-section p,
-    .beta-cta-showcase-section p {
+    .beta-cta-showcase-section p,
+    .recruiter-validation-section p {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
@@ -1088,26 +1085,15 @@ body {
     }
     
     /* Small mobile testimonials */
-    .recruiter-validation-section {
-        padding: 4rem 0.25rem 3rem;
-    }
-    
-    .recruiter-validation-section h2 {
-        font-size: 2rem;
-    }
-    
-    .recruiter-validation-section p {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
     
     .testimonials-container {
         height: 270px;
     }
     
+    /* Keep fade effects removed on small mobile */
     .testimonials-container::before,
     .testimonials-container::after {
-        width: 100px;
+        display: none;
     }
     
     .testimonial-card {
@@ -1157,26 +1143,7 @@ body {
     text-align: center;
 }
 
-.recruiter-validation-section h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #333;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.1;
-}
 
-.recruiter-validation-section p {
-    font-size: 1.3rem;
-    margin-bottom: 4rem;
-    color: #666;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-}
 
 .testimonials-container {
     position: relative;
