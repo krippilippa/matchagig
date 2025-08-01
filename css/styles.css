@@ -58,29 +58,6 @@ body {
     line-height: 1.5;
 }
 
-/* Primary Button */
-.primary {
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.primary:hover {
-    background: #ff5252;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
-}
-
 .hero-ctas {
     display: flex;
     flex-direction: column;
@@ -176,26 +153,6 @@ body {
 .beta-cta-content {
     text-align: center;
     color: white;
-}
-
-.beta-cta-button {
-    background: white;
-    color: #9C27B0;
-    padding: 1.2rem 3rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 50px;
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.beta-cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    background: #f8f9fa;
 }
 
 .beta-cta-content .beta-disclaimer {
@@ -479,10 +436,7 @@ body {
         max-width: 98%;
     }
     
-    .beta-cta-button {
-        padding: 1rem 2.5rem;
-        font-size: 1.1rem;
-    }
+
     
     .feature-product-image,
     .emails-product-image {
@@ -591,22 +545,12 @@ body {
         max-width: 99%;
     }
     
-    .beta-cta-button {
-        padding: 0.9rem 2rem;
-        font-size: 1rem;
-    }
-    
     .beta-benefits {
         gap: 0.8rem;
     }
     
     .benefit-item {
         font-size: 0.9rem;
-    }
-    
-    .primary {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
     }
     
     /* Small mobile testimonials */
