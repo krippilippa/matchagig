@@ -662,3 +662,194 @@ body {
         }
     }
 } 
+
+/* Email Signup Form Styles */
+.waitlist-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.waitlist-form-inline {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.waitlist-email-input {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    min-width: 250px;
+    transition: all 0.3s ease;
+}
+
+.waitlist-email-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.waitlist-email-input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+.waitlist-submit-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+}
+
+.waitlist-submit-btn:hover:not(:disabled) {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+.waitlist-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.waitlist-message {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waitlist-message.success {
+    color: #4CAF50;
+}
+
+.waitlist-message.error {
+    color: #ff6b6b;
+}
+
+/* Beta CTA Form Styles */
+.beta-waitlist-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto 1.5rem;
+}
+
+.beta-waitlist-form-inline {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.beta-waitlist-email-input {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    min-width: 280px;
+    transition: all 0.3s ease;
+}
+
+.beta-waitlist-email-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.beta-waitlist-email-input:focus {
+    outline: none;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.beta-waitlist-submit-btn {
+    background: white;
+    color: #9C27B0;
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+}
+
+.beta-waitlist-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    background: #f8f9fa;
+}
+
+.beta-waitlist-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.beta-waitlist-message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.beta-waitlist-message.success {
+    color: #4CAF50;
+}
+
+.beta-waitlist-message.error {
+    color: #ff6b6b;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .waitlist-form-inline,
+    .beta-waitlist-form-inline {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .waitlist-email-input,
+    .beta-waitlist-email-input {
+        width: 100%;
+        min-width: auto;
+        margin-bottom: 0.5rem;
+    }
+    
+    .waitlist-submit-btn,
+    .beta-waitlist-submit-btn {
+        width: 100%;
+    }
+} 

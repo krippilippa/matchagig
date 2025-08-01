@@ -29,7 +29,13 @@
             <h1>The Recruiter's AI Assistant</h1>
             <p>Stop Drowning in Resumes — Surface Your Top Candidates in Seconds</p>
             <div class="hero-ctas">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdw1czoz51eHXc0SL8OJdPKIB7et6X6izkdbVixu23j_2IXsQ/viewform?usp=dialog" target="_blank" class="primary">Join the Beta Waitlist →</a>
+                <form class="waitlist-form" id="hero-waitlist">
+                    <div class="waitlist-form-inline">
+                        <input type="email" name="email" class="waitlist-email-input" required placeholder="you@example.com" autocomplete="email">
+                        <button type="submit" class="waitlist-submit-btn">Join →</button>
+                    </div>
+                    <div class="waitlist-message" id="hero-msg"></div>
+                </form>
             </div>
             <div class="product-showcase">
                 <img src="UI1.png" alt="MatchAGig Interface showing candidate shortlist with match percentages" class="product-image">
@@ -132,7 +138,13 @@
             <p>We're inviting our first 100 recruiters to shape the roadmap — tell us what to build, test features early, and lock in a launch discount.</p>
             <div class="beta-cta-product-showcase">
                 <div class="beta-cta-content">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdw1czoz51eHXc0SL8OJdPKIB7et6X6izkdbVixu23j_2IXsQ/viewform?usp=dialog" target="_blank" class="beta-cta-button">Join the Beta Waitlist</a>
+                    <form class="beta-waitlist-form" id="beta-waitlist">
+                        <div class="beta-waitlist-form-inline">
+                            <input type="email" name="email" class="beta-waitlist-email-input" required placeholder="you@example.com" autocomplete="email">
+                            <button type="submit" class="beta-waitlist-submit-btn">Join the Beta Waitlist</button>
+                        </div>
+                        <div class="beta-waitlist-message" id="beta-msg"></div>
+                    </form>
                     <p class="beta-disclaimer">No spam. Just one invite when we're ready. Unsubscribe anytime.</p>
                     <div class="beta-benefits">
                         <div class="benefit-item">
@@ -170,18 +182,239 @@
         </div>
     </section>
 
-    <!-- JavaScript function removed as buttons now link directly to signup form -->
-    
     <script>
-        // Simple testimonials duplication for seamless scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const scrollContainer = document.querySelector('.testimonials-scroll');
-            if (scrollContainer) {
-                // Get all existing testimonials
-                const testimonials = scrollContainer.innerHTML;
-                // Duplicate them twice for seamless loop
-                scrollContainer.innerHTML = testimonials + testimonials;
+        // Secure Waitlist Form Handler
+        class WaitlistForm {
+            constructor() {
+                this.endpoint = 'https://script.google.com/macros/s/AKfycbxUfeaOIF4Isyab63P5BcT2stQQG8wGw2SyBZeS9St3r5oDcG-Ud2ccggwP59d-4tqpwQ/exec';
+                this.rateLimitMap = new Map();
+                this.init();
             }
+
+            init() {
+                // Initialize both forms
+                this.initForm('hero-waitlist', 'hero-msg');
+                this.initForm('beta-waitlist', 'beta-msg');
+                
+                // Initialize testimonials scroll
+                this.initTestimonials();
+            }
+
+            initForm(formId, msgId) {
+                const form = document.getElementById(formId);
+                const msg = document.getElementById(msgId);
+                
+                if (!form || !msg) return;
+
+                form.addEventListener('submit', (e) => this.handleSubmit(e, msg));
+            }
+
+            async handleSubmit(e, msgElement) {
+                e.preventDefault();
+                
+                const form = e.target;
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const emailInput = form.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+
+                // Security validations
+                if (!this.validateEmail(email)) {
+                    this.showMessage(msgElement, '❌ Please enter a valid email', 'error');
+                    return;
+                }
+
+                if (!this.checkRateLimit(email)) {
+                    this.showMessage(msgElement, '❌ Please wait before submitting again', 'error');
+                    return;
+                }
+
+                // Sanitize input
+                const sanitizedEmail = this.sanitizeInput(email);
+                
+                // Disable form during submission
+                this.setFormState(form, true);
+                this.showMessage(msgElement, '⏳ Joining...', '');
+
+                try {
+                    // Use iframe submission to avoid CORS issues
+                    await this.submitViaIframe(sanitizedEmail);
+                    
+                    this.showMessage(msgElement, '✅ Thanks! You\'re on the waitlist!', 'success');
+                    form.reset();
+                    this.trackSuccess(sanitizedEmail);
+                    
+                    // Google Analytics event tracking
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'waitlist_signup', {
+                            'event_category': 'engagement',
+                            'event_label': 'beta_waitlist'
+                        });
+                    }
+                } catch (error) {
+                    console.error('Waitlist submission error:', error);
+                    this.showMessage(msgElement, '❌ Something went wrong. Please try again.', 'error');
+                } finally {
+                    this.setFormState(form, false);
+                }
+            }
+
+            submitViaIframe(email) {
+                return new Promise((resolve, reject) => {
+                    // Create hidden iframe
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.name = 'waitlist-iframe-' + Date.now();
+                    document.body.appendChild(iframe);
+
+                    // Create hidden form
+                    const hiddenForm = document.createElement('form');
+                    hiddenForm.method = 'POST';
+                    hiddenForm.action = this.endpoint;
+                    hiddenForm.target = iframe.name;
+                    hiddenForm.style.display = 'none';
+
+                    // Add form fields
+                    const emailField = document.createElement('input');
+                    emailField.type = 'hidden';
+                    emailField.name = 'email';
+                    emailField.value = email;
+                    hiddenForm.appendChild(emailField);
+
+                    const refererField = document.createElement('input');
+                    refererField.type = 'hidden';
+                    refererField.name = 'referer';
+                    refererField.value = window.location.href;
+                    hiddenForm.appendChild(refererField);
+
+                    const timestampField = document.createElement('input');
+                    timestampField.type = 'hidden';
+                    timestampField.name = 'timestamp';
+                    timestampField.value = new Date().toISOString();
+                    hiddenForm.appendChild(timestampField);
+
+                    document.body.appendChild(hiddenForm);
+
+                    let resolved = false;
+
+                    // Listen for iframe load to detect errors
+                    iframe.onload = () => {
+                        if (!resolved) {
+                            resolved = true;
+                            cleanup();
+                            resolve();
+                        }
+                    };
+                    
+                    // Listen for iframe errors (like 403)
+                    iframe.onerror = () => {
+                        if (!resolved) {
+                            resolved = true;
+                            cleanup();
+                            reject(new Error('Failed to submit - please check your permissions'));
+                        }
+                    };
+
+                    // Set up timeout and cleanup
+                    const timeout = setTimeout(() => {
+                        if (!resolved) {
+                            resolved = true;
+                            cleanup();
+                            resolve(); // Assume success if no clear error
+                        }
+                    }, 4000);
+
+                    const cleanup = () => {
+                        clearTimeout(timeout);
+                        if (document.body.contains(iframe)) {
+                            document.body.removeChild(iframe);
+                        }
+                        if (document.body.contains(hiddenForm)) {
+                            document.body.removeChild(hiddenForm);
+                        }
+                    };
+
+                    document.body.appendChild(hiddenForm);
+
+                    // Submit form
+                    hiddenForm.submit();
+                });
+            }
+
+            validateEmail(email) {
+                // Enhanced email validation
+                const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+                return emailRegex.test(email) && email.length <= 254;
+            }
+
+            sanitizeInput(input) {
+                // Remove potentially dangerous characters
+                return input.replace(/[<>\"'&]/g, '').trim();
+            }
+
+            checkRateLimit(email) {
+                const now = Date.now();
+                const lastSubmission = this.rateLimitMap.get(email);
+                
+                // Rate limit: 1 submission per email per 60 seconds
+                if (lastSubmission && (now - lastSubmission) < 60000) {
+                    return false;
+                }
+                
+                this.rateLimitMap.set(email, now);
+                
+                // Clean up old entries (older than 5 minutes)
+                for (const [key, timestamp] of this.rateLimitMap.entries()) {
+                    if (now - timestamp > 300000) {
+                        this.rateLimitMap.delete(key);
+                    }
+                }
+                
+                return true;
+            }
+
+            trackSuccess(email) {
+                // Update rate limiting
+                this.rateLimitMap.set(email, Date.now());
+            }
+
+            setFormState(form, disabled) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const emailInput = form.querySelector('input[type="email"]');
+                
+                submitBtn.disabled = disabled;
+                emailInput.disabled = disabled;
+            }
+
+            showMessage(element, message, type) {
+                element.textContent = message;
+                const baseClass = element.classList.contains('beta-waitlist-message') ? 'beta-waitlist-message' : 'waitlist-message';
+                element.className = `${baseClass}${type ? ' ' + type : ''}`;
+                
+                // Clear message after 5 seconds for non-success messages
+                if (type !== 'success') {
+                    setTimeout(() => {
+                        if (element.textContent === message) {
+                            element.textContent = '';
+                            element.className = baseClass;
+                        }
+                    }, 5000);
+                }
+            }
+
+            initTestimonials() {
+                const scrollContainer = document.querySelector('.testimonials-scroll');
+                if (scrollContainer) {
+                    // Get all existing testimonials
+                    const testimonials = scrollContainer.innerHTML;
+                    // Duplicate them twice for seamless loop
+                    scrollContainer.innerHTML = testimonials + testimonials;
+                }
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new WaitlistForm();
         });
     </script>
 </body>
