@@ -145,9 +145,20 @@
             
             <div class="beta-cta-product-showcase">
                 <div class="beta-cta-content">
-                    <div class="founder-pricing-badge">
-                        <span class="founder-badge-text">Founder Pricing Available</span>
-                        <span class="founder-badge-subtext">Limited to first 100 users</span>
+                    <div class="pricing-badges-container">
+                        <div class="founder-pricing-badge">
+                            <span class="founder-badge-text">Founder Pricing Available</span>
+                            <span class="founder-badge-subtext">58 / 100 spots claimed</span>
+                        </div>
+                        <div class="deadline-badge">
+                            <span class="deadline-badge-text">Beta Deadline</span>
+                            <span class="deadline-badge-subtext">Aug 15th</span>
+                            <div class="countdown-timer" id="countdown">
+                                <span class="countdown-days">12d</span>
+                                <span class="countdown-hours">14h</span>
+                                <span class="countdown-minutes">23m</span>
+                            </div>
+                        </div>
                     </div>
                     <form class="beta-waitlist-form" id="beta-waitlist">
                         <div class="beta-waitlist-form-inline">
@@ -156,7 +167,6 @@
                         </div>
                         <div class="beta-waitlist-message" id="beta-msg"></div>
                     </form>
-                    <p class="beta-disclaimer">No spam. Just one invite when we're ready. Unsubscribe anytime.</p>
                     <div class="beta-benefits">
                         <div class="benefit-item">
                             <span class="check-icon">✓</span>
@@ -205,6 +215,7 @@
                 this.initForm('hero-waitlist', 'hero-msg');
                 this.initForm('beta-waitlist', 'beta-msg');
                 this.initTestimonials();
+                this.initCountdown();
             }
 
             initForm(formId, msgId) {
@@ -343,6 +354,36 @@
                     const testimonials = scrollContainer.innerHTML;
                     scrollContainer.innerHTML = testimonials + testimonials;
                 }
+            }
+
+            initCountdown() {
+                const targetDate = new Date('August 15, 2025 23:59:59').getTime();
+                
+                const updateCountdown = () => {
+                    const now = new Date().getTime();
+                    const timeLeft = targetDate - now;
+                    
+                    if (timeLeft <= 0) {
+                        document.getElementById('countdown').innerHTML = '<span style="color: #ff6b6b;">Expired</span>';
+                        return;
+                    }
+                    
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    const daysEl = document.querySelector('.countdown-days');
+                    const hoursEl = document.querySelector('.countdown-hours');
+                    const minutesEl = document.querySelector('.countdown-minutes');
+                    
+                    if (daysEl) daysEl.textContent = `${days}d`;
+                    if (hoursEl) hoursEl.textContent = `${hours}h`;
+                    if (minutesEl) minutesEl.textContent = `${minutes}m`;
+                };
+                
+                // Update immediately and then every minute
+                updateCountdown();
+                setInterval(updateCountdown, 60000);
             }
         }
 
