@@ -27,20 +27,25 @@
     <section id="hero" class="hero-cursor-style">
         <div class="hero-content">
             <h1>The Recruiter's AI Assistant</h1>
+            <p class="speed-tagline">Beat manual screening in <span id="speed-timer">00:05</span> seconds</p>
             <p>Stop Drowning in Resumes — Surface Your Top Candidates in Seconds</p>
+            <p class="differentiator">Built for hectic agency & in-house teams – no bulky ATS required.</p>
             
             <div class="hero-ctas">
-                <form class="waitlist-form" id="hero-waitlist">
-                    <div class="waitlist-form-inline">
-                        <input type="email" name="email" class="waitlist-email-input" required placeholder="you@example.com" autocomplete="email">
-                        <button type="submit" class="waitlist-submit-btn">Join Beta Waitlist</button>
-                    </div>
-                    <div class="waitlist-message" id="hero-msg"></div>
-                </form>
-                <div class="hero-benefits">
-                    <span class="hero-benefit">✓ Early access to beta</span>
-                    <span class="hero-benefit">✓ Founder pricing discount</span>
-                    <span class="hero-benefit">✓ Shape the roadmap</span>
+                <!-- Email + Button + Spots Counter in one line -->
+                <div class="hero-cta-row">
+                    <form class="waitlist-form" id="hero-waitlist">
+                        <div class="waitlist-form-inline">
+                            <input type="email" name="email" class="waitlist-email-input" required placeholder="you@example.com" autocomplete="email">
+                            <button type="submit" class="waitlist-submit-btn">Join Beta Waitlist</button>
+                            <div class="hero-spots-pill">
+                                <span class="spots-text">58 / 100 spots claimed</span>
+                                <span class="deadline-separator">•</span>
+                                <span class="deadline-text" id="hero-deadline-inline">10d 12h left</span>
+                            </div>
+                        </div>
+                        <div class="waitlist-message" id="hero-msg"></div>
+                    </form>
                 </div>
             </div>
             <div class="product-showcase">
@@ -215,6 +220,8 @@
                 this.initForm('beta-waitlist', 'beta-msg');
                 this.initTestimonials();
                 this.initCountdown();
+                this.initSpeedTimer();
+                this.initHeroCountdown();
             }
 
             initForm(formId, msgId) {
@@ -383,6 +390,55 @@
                 // Update immediately and then every minute
                 updateCountdown();
                 setInterval(updateCountdown, 60000);
+            }
+
+            initSpeedTimer() {
+                const speedTimer = document.getElementById('speed-timer');
+                if (!speedTimer) return;
+                
+                let seconds = 5;
+                const countdown = setInterval(() => {
+                    speedTimer.textContent = `00:0${seconds}`;
+                    seconds--;
+                    
+                    if (seconds < 0) {
+                        speedTimer.textContent = '00:00';
+                        clearInterval(countdown);
+                        
+                        // Reset after 3 seconds
+                        setTimeout(() => {
+                            seconds = 5;
+                            speedTimer.textContent = '00:05';
+                        }, 3000);
+                    }
+                }, 1000);
+            }
+
+            initHeroCountdown() {
+                const targetDate = new Date('August 15, 2025 23:59:59').getTime();
+                
+                const updateHeroCountdown = () => {
+                    const now = new Date().getTime();
+                    const timeLeft = targetDate - now;
+                    
+                    const heroDeadlineEl = document.getElementById('hero-deadline-inline');
+                    if (!heroDeadlineEl) return;
+                    
+                    if (timeLeft <= 0) {
+                        heroDeadlineEl.textContent = 'Expired';
+                        heroDeadlineEl.style.color = '#ff6b6b';
+                        return;
+                    }
+                    
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    
+                    heroDeadlineEl.textContent = `${days}d ${hours}h left`;
+                };
+                
+                // Update immediately and then every minute
+                updateHeroCountdown();
+                setInterval(updateHeroCountdown, 60000);
             }
         }
 
