@@ -12,6 +12,32 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
+    <!-- UTM Parameter Capture (MUST BE FIRST!) -->
+    <script>
+      // Capture UTM parameters IMMEDIATELY before anything can strip them
+      (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        let hasUTM = false;
+        
+        utmParams.forEach(param => {
+          const value = urlParams.get(param);
+          if (value) {
+            localStorage.setItem(param, value);
+            sessionStorage.setItem(param, value);
+            hasUTM = true;
+            console.log(`UTM captured: ${param} = ${value}`);
+          }
+        });
+        
+        if (hasUTM) {
+          console.log('UTM parameters captured before page processing:', window.location.href);
+          // Store the original URL with UTM params
+          sessionStorage.setItem('original_url_with_utm', window.location.href);
+        }
+      })();
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Y355M9H9X"></script>
     <script>
@@ -19,38 +45,38 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       
-      // Configure GA4 with enhanced measurement
-      gtag('config', 'G-2Y355M9H9X', {
-        'custom_map': {
-          'custom_parameter_1': 'utm_tracking'
-        },
-        'send_page_view': false // We'll send manually with UTM data
-      });
-      
-      // Send initial page view with UTM data
-      window.addEventListener('load', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasUTM = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
+      // Get UTM data from storage (in case URL was stripped)
+      function getUTMFromStorage() {
+        const utmData = {};
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         
-        if (hasUTM) {
-          gtag('event', 'page_view', {
-            'page_title': document.title,
-            'page_location': window.location.href,
-            'campaign_source': urlParams.get('utm_source'),
-            'campaign_medium': urlParams.get('utm_medium'),
-            'campaign_name': urlParams.get('utm_campaign'),
-            'campaign_term': urlParams.get('utm_term'),
-            'campaign_content': urlParams.get('utm_content')
-          });
-          console.log('GA4 page view sent with UTM data:', {
-            source: urlParams.get('utm_source'),
-            medium: urlParams.get('utm_medium'),
-            campaign: urlParams.get('utm_campaign')
-          });
-        } else {
-          gtag('event', 'page_view');
-        }
-      });
+        utmParams.forEach(param => {
+          const value = sessionStorage.getItem(param) || localStorage.getItem(param);
+          if (value) {
+            utmData[param] = value;
+          }
+        });
+        
+        return utmData;
+      }
+      
+      // Configure GA4 with UTM data
+      const utmData = getUTMFromStorage();
+      const hasStoredUTM = Object.keys(utmData).length > 0;
+      
+      if (hasStoredUTM) {
+        console.log('Configuring GA4 with UTM data:', utmData);
+        gtag('config', 'G-2Y355M9H9X', {
+          'campaign_source': utmData.utm_source,
+          'campaign_medium': utmData.utm_medium,
+          'campaign_name': utmData.utm_campaign,
+          'campaign_term': utmData.utm_term,
+          'campaign_content': utmData.utm_content,
+          'page_location': sessionStorage.getItem('original_url_with_utm') || window.location.href
+        });
+      } else {
+        gtag('config', 'G-2Y355M9H9X');
+      }
     </script>
 </head>
 <body>
@@ -226,48 +252,12 @@
             }
 
             initUTMTracking() {
-                // Preserve UTM parameters in localStorage for GA4 tracking
-                const urlParams = new URLSearchParams(window.location.search);
-                const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-                
-                utmParams.forEach(param => {
-                    const value = urlParams.get(param);
-                    if (value) {
-                        localStorage.setItem(param, value);
-                        console.log(`UTM parameter stored: ${param} = ${value}`);
-                    }
-                });
-
-                // Send UTM data to GA4 if available
-                this.sendUTMToGA4();
-            }
-
-            sendUTMToGA4() {
-                // Get UTM parameters from URL or localStorage
-                const urlParams = new URLSearchParams(window.location.search);
-                const utmData = {};
-                const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-                
-                utmParams.forEach(param => {
-                    const value = urlParams.get(param) || localStorage.getItem(param);
-                    if (value) {
-                        utmData[param] = value;
-                    }
-                });
-
-                // Send to GA4 if we have UTM data
-                if (Object.keys(utmData).length > 0 && typeof gtag !== 'undefined') {
-                    gtag('event', 'page_view', {
-                        campaign_source: utmData.utm_source,
-                        campaign_medium: utmData.utm_medium,
-                        campaign_name: utmData.utm_campaign,
-                        campaign_term: utmData.utm_term,
-                        campaign_content: utmData.utm_content,
-                        custom_map: {
-                            'custom_parameter_1': 'utm_tracking_enabled'
-                        }
-                    });
-                    console.log('UTM data sent to GA4:', utmData);
+                // UTM parameters are already captured in the head section
+                // This method now just logs the stored data
+                const storedUTM = this.getUTMData();
+                if (Object.keys(storedUTM).length > 0) {
+                    console.log('UTM data available for tracking:', storedUTM);
+                    console.log('Original URL with UTM:', sessionStorage.getItem('original_url_with_utm'));
                 }
             }
 
@@ -277,7 +267,7 @@
                 const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
                 
                 utmParams.forEach(param => {
-                    const value = localStorage.getItem(param);
+                    const value = sessionStorage.getItem(param) || localStorage.getItem(param);
                     if (value) {
                         utmData[param] = value;
                     }
