@@ -56,19 +56,73 @@
         utm_content: sessionStorage.getItem('utm_content')
       };
 
-      // Configure GA4 with stored UTM data
+      // Configure GA4 normally first
+      gtag('config', 'G-2Y355M9H9X');
+      
+      // Then send custom page_view with UTM data if available
       if (storedUTM.utm_source || storedUTM.utm_medium || storedUTM.utm_campaign) {
-        console.log('GA4 configured with stored UTM data:', storedUTM);
-        gtag('config', 'G-2Y355M9H9X', {
+        console.log('Sending custom page_view with UTM data:', storedUTM);
+        
+        // Send a custom page view event with campaign data
+        gtag('event', 'page_view', {
+          'page_title': document.title,
+          'page_location': window.location.href,
           'campaign_source': storedUTM.utm_source,
-          'campaign_medium': storedUTM.utm_medium, 
+          'campaign_medium': storedUTM.utm_medium,
           'campaign_name': storedUTM.utm_campaign,
           'campaign_term': storedUTM.utm_term,
           'campaign_content': storedUTM.utm_content
         });
+        
+        // Also send campaign data as a separate event
+        gtag('event', 'campaign_attribution', {
+          'event_category': 'marketing',
+          'campaign_source': storedUTM.utm_source,
+          'campaign_medium': storedUTM.utm_medium,
+          'campaign_name': storedUTM.utm_campaign,
+          'campaign_term': storedUTM.utm_term,
+          'campaign_content': storedUTM.utm_content
+        });
+        
       } else {
-        console.log('GA4 configured without UTM data - URL was:', window.location.href);
-        gtag('config', 'G-2Y355M9H9X');
+        console.log('No UTM data found - check if URL had parameters before redirect');
+        console.log('Referrer:', document.referrer);
+        
+        // Check if UTM parameters are in the referrer (in case of redirect)
+        if (document.referrer.includes('utm_')) {
+          console.log('UTM parameters found in referrer - extracting...');
+          const referrerURL = new URL(document.referrer);
+          const referrerParams = new URLSearchParams(referrerURL.search);
+          
+          const referrerUTM = {
+            utm_source: referrerParams.get('utm_source'),
+            utm_medium: referrerParams.get('utm_medium'),
+            utm_campaign: referrerParams.get('utm_campaign'),
+            utm_term: referrerParams.get('utm_term'),
+            utm_content: referrerParams.get('utm_content')
+          };
+          
+          // Store and send referrer UTM data
+          Object.entries(referrerUTM).forEach(([key, value]) => {
+            if (value) {
+              console.log(`Found in referrer - ${key}: ${value}`);
+              localStorage.setItem(key, value);
+              sessionStorage.setItem(key, value);
+            }
+          });
+          
+          if (referrerUTM.utm_source || referrerUTM.utm_medium || referrerUTM.utm_campaign) {
+            gtag('event', 'page_view', {
+              'page_title': document.title,
+              'page_location': window.location.href,
+              'campaign_source': referrerUTM.utm_source,
+              'campaign_medium': referrerUTM.utm_medium,
+              'campaign_name': referrerUTM.utm_campaign,
+              'campaign_term': referrerUTM.utm_term,
+              'campaign_content': referrerUTM.utm_content
+            });
+          }
+        }
       }
     </script>
 </head>
