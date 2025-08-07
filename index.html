@@ -12,14 +12,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Y355M9H9X"></script>
+    <!-- Google tag (gtag.js) - Load synchronously for immediate UTM capture -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-2Y355M9H9X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-2Y355M9H9X');
+      // Configure GA4 - this will automatically capture UTM parameters from the current URL
+      gtag('config', 'G-2Y355M9H9X', {
+        'send_page_view': true
+      });
+      
+      // Debug: Log current URL to console
+      console.log('GA4 configured with URL:', window.location.href);
     </script>
 </head>
 <body>
