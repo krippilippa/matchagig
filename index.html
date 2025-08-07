@@ -12,32 +12,26 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Immediate UTM Capture - Must be first script -->
+    <!-- UTM Parameter Capture from Hash -->
     <script>
-      // Capture URL immediately - very first thing that runs
-      const ORIGINAL_URL = window.location.href;
-      const ORIGINAL_SEARCH = window.location.search;
-      console.log('IMMEDIATE CAPTURE - Original URL:', ORIGINAL_URL);
-      console.log('IMMEDIATE CAPTURE - Original search params:', ORIGINAL_SEARCH);
+      // Capture UTM parameters from hash (e.g., #utm_source=test&utm_medium=social)
+      const hash = window.location.hash.substring(1); // Remove the #
+      const hashParams = new URLSearchParams(hash);
+      const utmData = {};
       
-      // Extract UTM parameters immediately
-      const urlParams = new URLSearchParams(ORIGINAL_SEARCH);
-      const utmData = {
-        utm_source: urlParams.get('utm_source'),
-        utm_medium: urlParams.get('utm_medium'),
-        utm_campaign: urlParams.get('utm_campaign'),
-        utm_term: urlParams.get('utm_term'),
-        utm_content: urlParams.get('utm_content')
-      };
-      
-      // Store immediately
-      Object.entries(utmData).forEach(([key, value]) => {
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(param => {
+        const value = hashParams.get(param);
         if (value) {
-          console.log(`IMMEDIATE CAPTURE - ${key}: ${value}`);
-          localStorage.setItem(key, value);
-          sessionStorage.setItem(key, value);
+          utmData[param] = value;
+          localStorage.setItem(param, value);
+          sessionStorage.setItem(param, value);
+          console.log(`UTM captured from hash: ${param} = ${value}`);
         }
       });
+      
+      if (Object.keys(utmData).length > 0) {
+        console.log('UTM data captured:', utmData);
+      }
     </script>
 
     <!-- Google tag (gtag.js) -->
@@ -56,17 +50,11 @@
         utm_content: sessionStorage.getItem('utm_content')
       };
 
-      // Configure GA4 normally first
-      gtag('config', 'G-2Y355M9H9X');
-      
-      // Then send custom page_view with UTM data if available
+      // Configure GA4 with UTM data if available
       if (storedUTM.utm_source || storedUTM.utm_medium || storedUTM.utm_campaign) {
-        console.log('Sending custom page_view with UTM data:', storedUTM);
+        console.log('Configuring GA4 with UTM data:', storedUTM);
         
-        // Send a custom page view event with campaign data
-        gtag('event', 'page_view', {
-          'page_title': document.title,
-          'page_location': window.location.href,
+        gtag('config', 'G-2Y355M9H9X', {
           'campaign_source': storedUTM.utm_source,
           'campaign_medium': storedUTM.utm_medium,
           'campaign_name': storedUTM.utm_campaign,
@@ -74,7 +62,7 @@
           'campaign_content': storedUTM.utm_content
         });
         
-        // Also send campaign data as a separate event
+        // Send campaign attribution event
         gtag('event', 'campaign_attribution', {
           'event_category': 'marketing',
           'campaign_source': storedUTM.utm_source,
@@ -83,46 +71,8 @@
           'campaign_term': storedUTM.utm_term,
           'campaign_content': storedUTM.utm_content
         });
-        
       } else {
-        console.log('No UTM data found - check if URL had parameters before redirect');
-        console.log('Referrer:', document.referrer);
-        
-        // Check if UTM parameters are in the referrer (in case of redirect)
-        if (document.referrer.includes('utm_')) {
-          console.log('UTM parameters found in referrer - extracting...');
-          const referrerURL = new URL(document.referrer);
-          const referrerParams = new URLSearchParams(referrerURL.search);
-          
-          const referrerUTM = {
-            utm_source: referrerParams.get('utm_source'),
-            utm_medium: referrerParams.get('utm_medium'),
-            utm_campaign: referrerParams.get('utm_campaign'),
-            utm_term: referrerParams.get('utm_term'),
-            utm_content: referrerParams.get('utm_content')
-          };
-          
-          // Store and send referrer UTM data
-          Object.entries(referrerUTM).forEach(([key, value]) => {
-            if (value) {
-              console.log(`Found in referrer - ${key}: ${value}`);
-              localStorage.setItem(key, value);
-              sessionStorage.setItem(key, value);
-            }
-          });
-          
-          if (referrerUTM.utm_source || referrerUTM.utm_medium || referrerUTM.utm_campaign) {
-            gtag('event', 'page_view', {
-              'page_title': document.title,
-              'page_location': window.location.href,
-              'campaign_source': referrerUTM.utm_source,
-              'campaign_medium': referrerUTM.utm_medium,
-              'campaign_name': referrerUTM.utm_campaign,
-              'campaign_term': referrerUTM.utm_term,
-              'campaign_content': referrerUTM.utm_content
-            });
-          }
-        }
+        gtag('config', 'G-2Y355M9H9X');
       }
     </script>
 </head>
