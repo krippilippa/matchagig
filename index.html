@@ -18,39 +18,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      
-      // Configure GA4 with enhanced measurement
-      gtag('config', 'G-2Y355M9H9X', {
-        'custom_map': {
-          'custom_parameter_1': 'utm_tracking'
-        },
-        'send_page_view': false // We'll send manually with UTM data
-      });
-      
-      // Send initial page view with UTM data
-      window.addEventListener('load', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasUTM = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
-        
-        if (hasUTM) {
-          gtag('event', 'page_view', {
-            'page_title': document.title,
-            'page_location': window.location.href,
-            'campaign_source': urlParams.get('utm_source'),
-            'campaign_medium': urlParams.get('utm_medium'),
-            'campaign_name': urlParams.get('utm_campaign'),
-            'campaign_term': urlParams.get('utm_term'),
-            'campaign_content': urlParams.get('utm_content')
-          });
-          console.log('GA4 page view sent with UTM data:', {
-            source: urlParams.get('utm_source'),
-            medium: urlParams.get('utm_medium'),
-            campaign: urlParams.get('utm_campaign')
-          });
-        } else {
-          gtag('event', 'page_view');
-        }
-      });
+
+      gtag('config', 'G-2Y355M9H9X');
     </script>
 </head>
 <body>
@@ -217,73 +186,11 @@
             }
 
             init() {
-                this.initUTMTracking();
                 this.initForm('hero-waitlist', 'hero-msg');
                 this.initForm('beta-waitlist', 'beta-msg');
                 this.initTestimonials();
                 this.initSpeedTimer();
                 this.initHeroCountdown();
-            }
-
-            initUTMTracking() {
-                // Preserve UTM parameters in localStorage for GA4 tracking
-                const urlParams = new URLSearchParams(window.location.search);
-                const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-                
-                utmParams.forEach(param => {
-                    const value = urlParams.get(param);
-                    if (value) {
-                        localStorage.setItem(param, value);
-                        console.log(`UTM parameter stored: ${param} = ${value}`);
-                    }
-                });
-
-                // Send UTM data to GA4 if available
-                this.sendUTMToGA4();
-            }
-
-            sendUTMToGA4() {
-                // Get UTM parameters from URL or localStorage
-                const urlParams = new URLSearchParams(window.location.search);
-                const utmData = {};
-                const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-                
-                utmParams.forEach(param => {
-                    const value = urlParams.get(param) || localStorage.getItem(param);
-                    if (value) {
-                        utmData[param] = value;
-                    }
-                });
-
-                // Send to GA4 if we have UTM data
-                if (Object.keys(utmData).length > 0 && typeof gtag !== 'undefined') {
-                    gtag('event', 'page_view', {
-                        campaign_source: utmData.utm_source,
-                        campaign_medium: utmData.utm_medium,
-                        campaign_name: utmData.utm_campaign,
-                        campaign_term: utmData.utm_term,
-                        campaign_content: utmData.utm_content,
-                        custom_map: {
-                            'custom_parameter_1': 'utm_tracking_enabled'
-                        }
-                    });
-                    console.log('UTM data sent to GA4:', utmData);
-                }
-            }
-
-            getUTMData() {
-                // Helper method to get current UTM data for form submissions
-                const utmData = {};
-                const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-                
-                utmParams.forEach(param => {
-                    const value = localStorage.getItem(param);
-                    if (value) {
-                        utmData[param] = value;
-                    }
-                });
-                
-                return utmData;
             }
 
             initForm(formId, msgId) {
@@ -326,15 +233,9 @@
                     this.trackSuccess(sanitizedEmail);
                     
                     if (typeof gtag !== 'undefined') {
-                        const utmData = this.getUTMData();
                         gtag('event', 'waitlist_signup', {
                             'event_category': 'engagement',
-                            'event_label': 'beta_waitlist',
-                            'campaign_source': utmData.utm_source,
-                            'campaign_medium': utmData.utm_medium,
-                            'campaign_name': utmData.utm_campaign,
-                            'campaign_term': utmData.utm_term,
-                            'campaign_content': utmData.utm_content
+                            'event_label': 'beta_waitlist'
                         });
                     }
                 } catch (error) {
@@ -356,17 +257,7 @@
                     form.action = this.endpoint;
                     form.target = iframe.name;
                     form.style.display = 'none';
-                    
-                    // Add email input
-                    let formHTML = `<input type="hidden" name="email" value="${email}">`;
-                    
-                    // Add UTM parameters to form submission
-                    const utmData = this.getUTMData();
-                    Object.entries(utmData).forEach(([key, value]) => {
-                        formHTML += `<input type="hidden" name="${key}" value="${value}">`;
-                    });
-                    
-                    form.innerHTML = formHTML;
+                    form.innerHTML = `<input type="hidden" name="email" value="${email}">`;
 
                     document.body.append(iframe, form);
 
