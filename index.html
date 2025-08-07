@@ -12,20 +12,64 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Google tag (gtag.js) - Load synchronously for immediate UTM capture -->
+    <!-- Immediate UTM Capture - Must be first script -->
+    <script>
+      // Capture URL immediately - very first thing that runs
+      const ORIGINAL_URL = window.location.href;
+      const ORIGINAL_SEARCH = window.location.search;
+      console.log('IMMEDIATE CAPTURE - Original URL:', ORIGINAL_URL);
+      console.log('IMMEDIATE CAPTURE - Original search params:', ORIGINAL_SEARCH);
+      
+      // Extract UTM parameters immediately
+      const urlParams = new URLSearchParams(ORIGINAL_SEARCH);
+      const utmData = {
+        utm_source: urlParams.get('utm_source'),
+        utm_medium: urlParams.get('utm_medium'),
+        utm_campaign: urlParams.get('utm_campaign'),
+        utm_term: urlParams.get('utm_term'),
+        utm_content: urlParams.get('utm_content')
+      };
+      
+      // Store immediately
+      Object.entries(utmData).forEach(([key, value]) => {
+        if (value) {
+          console.log(`IMMEDIATE CAPTURE - ${key}: ${value}`);
+          localStorage.setItem(key, value);
+          sessionStorage.setItem(key, value);
+        }
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
     <script src="https://www.googletagmanager.com/gtag/js?id=G-2Y355M9H9X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      // Configure GA4 - this will automatically capture UTM parameters from the current URL
-      gtag('config', 'G-2Y355M9H9X', {
-        'send_page_view': true
-      });
-      
-      // Debug: Log current URL to console
-      console.log('GA4 configured with URL:', window.location.href);
+      // Get stored UTM data
+      const storedUTM = {
+        utm_source: sessionStorage.getItem('utm_source'),
+        utm_medium: sessionStorage.getItem('utm_medium'),
+        utm_campaign: sessionStorage.getItem('utm_campaign'),
+        utm_term: sessionStorage.getItem('utm_term'),
+        utm_content: sessionStorage.getItem('utm_content')
+      };
+
+      // Configure GA4 with stored UTM data
+      if (storedUTM.utm_source || storedUTM.utm_medium || storedUTM.utm_campaign) {
+        console.log('GA4 configured with stored UTM data:', storedUTM);
+        gtag('config', 'G-2Y355M9H9X', {
+          'campaign_source': storedUTM.utm_source,
+          'campaign_medium': storedUTM.utm_medium, 
+          'campaign_name': storedUTM.utm_campaign,
+          'campaign_term': storedUTM.utm_term,
+          'campaign_content': storedUTM.utm_content
+        });
+      } else {
+        console.log('GA4 configured without UTM data - URL was:', window.location.href);
+        gtag('config', 'G-2Y355M9H9X');
+      }
     </script>
 </head>
 <body>
