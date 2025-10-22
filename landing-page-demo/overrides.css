@@ -1,0 +1,618 @@
+/* --- HERO FIX PACK --- */
+:root{
+  --text:#0b1220;
+  --muted:#475569;
+  --primary:#16a34a;
+  --lime-1:#B6F05E; /* bright lime */
+  --lime-2:#22C55E; /* emerald */
+  --mint:#A7F3D0;   /* mint wash */
+  /* spacing tokens */
+  --space-sm: 20px;
+  --space-md: 32px;
+  --space-lg: 56px;
+  --space-xl: 88px;
+}
+
+body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+
+/* kill any generic .section rules that were shrinking/left-aligning the hero */
+#top, .section.hero, .hero.section, section.hero{all: revert-layer;}
+
+/* strong specificity so it beats previous styles */
+section.hero.hero { 
+  position: relative;
+  isolation: isolate; /* ensure own stacking context for mobile */
+  overflow: hidden;
+  /* tighter hero default will be driven by global section rhythm */
+  padding: clamp(var(--space-md), 6vw, var(--space-lg)) 0;
+  min-height: 100svh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  display: flex; align-items: center; justify-content: center; /* center to balance top/bottom space */
+}
+
+section.hero.hero .hero__inner{
+  max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
+  padding-inline: 16px;
+  margin-top: 0; /* remove extra top push to reduce bottom whitespace */
+  position: relative; z-index: 1; /* above background on mobile */
+}
+
+section.hero.hero .hero__title{
+  margin: 0 0 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(52px, 10vw, 110px);
+  line-height: 1.04;
+  color: var(--text);
+}
+
+section.hero.hero .hero__sub{
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: clamp(16px, 2.4vw, 20px);
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+/* remove any prior glow and apply organic flame */
+/* dedicated background layer for lava effect */
+.hero-bg{ position:absolute; inset:0; bottom:auto; pointer-events:none; z-index:0; display:block; opacity:.8; }
+.hero-bg::before{ content:""; position:absolute; left:0; right:0; top:0; height:55%; background: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 100%); z-index:1; }
+.hero-bg .blob{ position:absolute; border-radius:50%; filter: blur(28px) saturate(1.08); will-change: transform, filter; }
+.hero-bg .b1{ left:-12vw; bottom:-10vh; width:50vw; height:40vw; background: radial-gradient(closest-side, color-mix(in srgb, var(--lime-1) 88%, transparent), transparent); animation: blobFloat1 34s ease-in-out infinite alternate; transform: translate3d(0,0,0); }
+.hero-bg .b2{ left:28vw; bottom:-12vh; width:54vw; height:42vw; background: radial-gradient(closest-side, color-mix(in srgb, var(--lime-2) 85%, transparent), transparent); animation: blobFloat2 44s ease-in-out infinite alternate; transform: translate3d(0,0,0); }
+.hero-bg .b3{ right:-10vw; bottom:-8vh; width:38vw; height:32vw; background: radial-gradient(closest-side, color-mix(in srgb, var(--mint) 90%, transparent), transparent); animation: blobFloat3 26s ease-in-out infinite alternate; transform: translate3d(0,0,0); }
+
+@keyframes blobFloat1{ 0%{ transform: translate3d(0,1vh,0) scale(1); } 100%{ transform: translate3d(1.6vw,-1vh,0) scale(1.04); } }
+@keyframes blobFloat2{ 0%{ transform: translate3d(-1vw,2vh,0) scale(1); } 100%{ transform: translate3d(1vw,-1vh,0) scale(1.05); } }
+@keyframes blobFloat3{ 0%{ transform: translate3d(0,1vh,0) scale(1); } 100%{ transform: translate3d(-1.2vw,-2vh,0) scale(1.06); } }
+
+@media (prefers-reduced-motion: reduce){
+  .hero-bg .blob{ animation: none; }
+}
+
+/* soften the transition into the next section (bottom fade to white) */
+section.hero.hero::after{ content:""; position:absolute; left:-2%; right:-2%; bottom:-1px; height: min(22vh, 240px); background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.72) 60%, #ffffff 92%); pointer-events:none; z-index:0; }
+
+/* Mobile rendering adjustments for the glow */
+@media (max-width: 600px){
+  section.hero.hero{ min-height: calc(var(--vh, 1svh) * 100); }
+  .hero-bg{ left:-40vw; right:-40vw; bottom:-2vh; height: 90vh; opacity:.92; }
+  .hero-bg::before{ height:50%; }
+  .hero-bg .b1{ bottom: 10vh; width: 80vw; height: 64vw; }
+  .hero-bg .b2{ bottom: 12vh; width: 96vw; height: 72vw; }
+  .hero-bg .b3{ bottom: 14vh; width: 70vw; height: 56vw; }
+}
+
+/* Fallback if mask support breaks on older Safari - keep glow visible */
+@supports not (-webkit-mask-image: linear-gradient(#000,#000)){
+  @media (max-width: 600px){
+    .hero-bg::before{ background: linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 100%); }
+  }
+}
+
+@keyframes glowDrift{
+  0%   { transform: translateY(2vh) scale(1); }
+  100% { transform: translateY(0)    scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  section.hero.hero::before{ animation: none; }
+}
+
+/* High-specificity hero type override */
+#hero-title.hero__title, section.hero.hero #hero-title.hero__title{
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.06 !important;
+  font-size: clamp(36px, 6.5vw, 90px) !important;
+  max-width: 16ch !important;
+  margin: 0 auto 12px !important;
+}
+section.hero.hero .hero__sub{
+  font-size: clamp(15px, 2vw, 18px) !important;
+  line-height: 1.6 !important;
+  margin: 0 auto 16px !important;
+}
+
+/* pill demo button */
+section.hero.hero .btn-demo{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:12px 18px; border-radius:999px;
+  border:1px solid rgba(15,23,42,.08);
+  background: linear-gradient(180deg,#9aa0a6 0%, #6b7280 100%);
+  color:#fff; font-weight:600; cursor:pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.3);
+}
+section.hero.hero .btn-demo:hover{ transform: translateY(-1px); }
+
+/* floating CTA */
+.float-cta{
+  position: fixed; right:24px; bottom:24px; z-index:50;
+  padding:12px 16px; border-radius:999px; border:0;
+  background: var(--primary); color:#fff; font-weight:600;
+  box-shadow: 0 10px 30px rgba(22,163,74,.35);
+}
+.float-cta:hover{ filter: brightness(0.92); }
+
+/* ensure later sections keep their layout */
+.section{max-width:1200px; margin:0 auto; padding: clamp(var(--space-md), 8vw, var(--space-xl)) 16px;}
+
+/* ===== Meaning split section ===== */
+.meaning{
+  padding: clamp(56px, 8vw, 96px) 0;
+  background:#fff;
+}
+
+.meaning{
+  padding: clamp(84px, 10vw, 144px) 0;
+}
+.meaning__grid{
+  display:grid;
+  grid-template-columns: 0.52fr 0.48fr; /* left / right */
+  gap: clamp(24px, 5vw, 72px);
+  align-items:center;
+}
+
+/* center vertical divider */
+/* remove old center divider */
+
+.meaning__left{ padding-right: clamp(8px, 2vw, 24px); }
+.meaning__title{
+  margin:0 0 14px;
+  font-weight: 800;
+  letter-spacing:-0.02em;
+  font-size: clamp(40px, 4.5vw, 60px);
+  line-height:1.08;
+  color:#0B1220;
+  max-width: 16ch;
+}
+.meaning__sub{
+  margin:0;
+  color:#475569;
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height:1.65;
+  max-width: 36ch;
+}
+
+/* right visual card */
+.meaning__right{ display:flex; justify-content:center; }
+.meaning-card{ position:relative; background:#fff; border:1px solid #EEF2F4; border-radius:22px; box-shadow:0 24px 80px rgba(2,6,23,.08); overflow:hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.meaning-card img{ display:block; width:100%; height:auto; }
+.meaning-card::before{ content:""; position:absolute; inset:auto -10% -12% -10%; height: 40%; background: radial-gradient(50% 60% at 50% 50%, rgba(167,243,208,.35), rgba(167,243,208,0) 70%); filter: blur(18px); z-index:-1; }
+.meaning-card:hover{ transform: translateY(-3px); box-shadow:0 28px 100px rgba(2,6,23,.12); }
+.meaning-card:focus-visible{ outline:2px solid #16A34A; outline-offset: 3px; }
+
+/* Safety: hide any leftover right-side pills if still in DOM */
+.meaning__right .meaning__row,
+.meaning__right .pill--score{ display:none !important; }
+.meaning__row{ display:flex; align-items:center; gap:16px; }
+
+/* base pill */
+.pill{
+  display:inline-flex; align-items:center; gap:12px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid #e6ebef;
+  white-space: nowrap;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+  font-weight: 600;
+}
+
+/* grey input pill (with magnifier) */
+.pill--input{
+  background: linear-gradient(180deg,#f8fafb 0%, #eef2f4 100%);
+  color:#0f172a;
+}
+.icon-circle{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:24px; height:24px; border-radius:999px;
+  background:#fff; color:#8692a6; border:1px solid #e6ebef;
+}
+
+/* green outline pill */
+.pill--outline{
+  background:#eaf7ee;
+  border-color:#b9e3c6;
+  color:#15803d;
+}
+
+/* score pill with green dot */
+.pill--score{
+  align-self:flex-start;
+  background:#eaf7ee;
+  border-color:#b9e3c6;
+  color:#065f46;
+}
+.pill--score .dot{
+  width:10px; height:10px; border-radius:999px; background:#16A34A; display:inline-block;
+  box-shadow: 0 0 0 4px rgba(22,163,74,.15);
+  margin-right:6px;
+}
+
+/* arrow spacing */
+.meaning__arrow{ display:inline-flex; }
+
+/* responsive: stack & remove divider on mobile */
+@media (max-width: 1024px){
+  .meaning__grid{ grid-template-columns: 0.55fr 0.45fr; }
+  .meaning-card{ max-width: 560px; margin-inline:auto; }
+  .meaning__title{ font-size: clamp(38px, 4.2vw, 54px); }
+}
+@media (max-width: 900px){
+  .meaning{ padding: clamp(64px, 10vw, 96px) 0; }
+  .meaning__grid{ grid-template-columns: 1fr; }
+  .meaning__left{ padding-right: 0; }
+  .meaning__right{ margin-top: 16px; }
+  .meaning__title{ font-size: clamp(34px, 5.5vw, 44px); }
+  .meaning__sub{ font-size: clamp(17px, 2.4vw, 18px); }
+}
+@media (max-width: 480px){
+  .meaning__title{ font-size: clamp(32px, 6vw, 38px); }
+  .meaning-card{ width: 100%; }
+}
+
+/* ===== Throughput (scale) section layout ===== */
+.throughput{ padding: clamp(56px, 8vw, 96px) 0; }
+.throughput__grid{ display:grid; gap: clamp(24px, 6vw, 48px); align-items:center; grid-template-columns: 1fr; }
+.throughput__text{ order: 1; }
+.throughput__art{ order: 2; display:flex; justify-content:center; }
+.throughput__art img{ width:100%; height:auto; max-width:520px; }
+
+@media (min-width: 900px){
+  .throughput__grid{ grid-template-columns: 0.55fr 0.45fr; }
+  .throughput__text{ order: 0; }
+  .throughput__art{ order: 0; justify-content:flex-end; }
+}
+
+/* ===== Proof section ===== */
+.proof{ padding: clamp(56px,8vw,96px) 0; background:#fff; }
+.proof__title{ text-align:center; margin:0 0 8px; font-weight:800; letter-spacing:-.02em; color:#0B1220; line-height:1.06; font-size: clamp(32px, 4.6vw, 56px); max-width:20ch; margin-left:auto; margin-right:auto; }
+.proof__sub{ text-align:center; margin:0 0 clamp(28px,4vw,40px); color:#475569; font-size:clamp(15px,2.1vw,18px); line-height:1.6; }
+
+.proof__grid{
+  position:relative;
+  display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,4vw,56px); align-items:start;
+}
+.proof__grid::after{
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:#eef2f4; transform:translateX(-50%);
+}
+
+/* Evidence card (left) */
+.ev-card{
+  border:1px solid #e6ebef; border-radius:22px; background:#fff;
+  padding:20px; box-shadow:0 16px 48px rgba(2,6,23,.06);
+}
+.ev-chip{
+  display:inline-flex; align-items:center; padding:12px 18px;
+  border-radius:999px; border:1px solid #e6ebef;
+  background:linear-gradient(180deg,#f8fafb 0%, #eef2f4 100%);
+  font-weight:700; color:#0f172a; margin-bottom:12px;
+}
+.ev-dots{ display:flex; gap:8px; align-items:center; margin:2px 0 14px; }
+.dot{ width:10px; height:10px; border-radius:50%; background:#e2e8f0; }
+.dot--on{ background:#16A34A; box-shadow:0 0 0 4px rgba(22,163,74,.15); }
+
+.ev-quote{
+  margin-top:8px;
+  border:1px solid #e6ebef; border-radius:16px; padding:14px 16px;
+  background:#f7fafc; color:#0b1220; line-height:1.6;
+}
+.ev-ctrls{ display:flex; gap:10px; margin-top:14px; justify-content:flex-end; }
+.ctrl{
+  width:34px; height:34px; border-radius:999px; border:1px solid #e6ebef;
+  background:#fff; box-shadow:0 6px 18px rgba(2,6,23,.06); font-weight:700; cursor:pointer;
+}
+
+/* Résumé mock (right) */
+.resume-card{
+  border:1px solid #eef2f4; border-radius:22px; background:#fff;
+  padding:28px; box-shadow:0 20px 60px rgba(2,6,23,.06);
+}
+.line{
+  height:10px; border-radius:6px; background:#E5E7EB; margin:12px 0;
+}
+.line.l1{ width:40% }
+.line.l2{ width:55% }
+.line.hi{
+  width:70%;
+  background:#CFF7DC; /* soft green highlight */
+}
+
+/* Responsive */
+@media (max-width: 960px){
+  .proof__grid{ grid-template-columns:1fr; }
+  .proof__grid::after{ display:none; }
+}
+
+/* Real resume image card */
+.resume-card{
+  border:1px solid #eef2f4; border-radius:22px; background:#fff;
+  box-shadow:0 20px 60px rgba(2,6,23,.06); overflow:hidden;
+}
+.resume-card img{
+  display:block; width:100%; height:auto;
+}
+
+/* How visual */
+.how-visual{ display:flex; justify-content:center; }
+.how-visual img{
+  max-width:100%; height:auto; border-radius:18px; box-shadow:0 24px 80px rgba(2,6,23,.10);
+}
+
+/* Center 65% text in score pill while keeping dot on left */
+.meaning .pill--score{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 14px 48px;
+  min-width: 220px;
+  text-align: center;
+}
+.meaning .pill--score .dot{
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
+
+.ev-card{ padding:16px; border-radius:18px; }
+.ev-chip{ padding:10px 16px; border-radius:18px; }
+.ev-quote{ padding:12px 14px; border-radius:14px; font-size:clamp(14px, 2.2vw, 18px); }
+.ctrl{ width:30px; height:30px; }
+
+/* --- Override CTA color to match lime/mint theme --- */
+section.hero.hero .btn-demo{
+  background: linear-gradient(180deg, #111827 0%, #0B1220 100%) !important; /* near-black */
+  border: 1px solid rgba(15,23,42,.35) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 32px rgba(15,23,42,.28), inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+section.hero.hero .btn-demo:hover{ background: linear-gradient(180deg, #0F172A 0%, #0A0F1C 100%) !important; transform: translateY(-1px); }
+section.hero.hero .btn-demo:focus-visible{ outline: 3px solid rgba(34,197,94,.45); outline-offset: 2px; }
+
+
+
+/* ===== CTA cleanup: remove box look and make full-width ===== */
+#cta,
+.section.cta{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+#cta.section{
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 56px 0 !important;
+}
+
+@media (min-width: 768px){
+  #cta.section{ padding: 80px 0 !important; }
+}
+
+#cta .container{ text-align: center; }
+
+/* ===== Footer tweaks: move line to bottom and tighten height ===== */
+.site-footer{
+  border-top: 0 !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  padding: 12px 0 !important;
+}
+
+/* Mobile: add subtle green glow at the top to match bottom */
+@media (max-width: 640px){
+  .hero-bg::before{
+    content: "";
+    position: absolute;
+    left: -2%; right: -2%; top: -1px;
+    height: min(40vh, 360px);
+    background: radial-gradient(70% 85% at 50% 12%, rgba(22,163,74,.18) 0%, rgba(22,163,74,.10) 38%, rgba(22,163,74,0) 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Mobile: vertically center hero and push next section below fold */
+@media (max-width: 640px){
+  section.hero{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100svh !important;
+    min-height: calc(var(--vh, 1svh) * 100) !important;
+    padding-top: clamp(16px, 6vh, 32px) !important;
+    padding-bottom: clamp(16px, 6vh, 32px) !important;
+    text-align: center !important;
+  }
+  section.hero .hero__inner{ margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+  section.hero .btn-demo{ margin-left: auto !important; margin-right: auto !important; }
+  /* Cap background so it doesn't add whitespace */
+  section.hero .hero-bg{ height: auto !important; max-height: 100svh !important; }
+  /* Add breathing room before next section so it starts below the fold */
+  section.hero + section#meaning{ margin-top: clamp(24px, 12vh, 64px) !important; }
+}
+
+/* Footer (contact links) */
+.site-footer { padding: 32px 0 40px !important; }
+.site-footer .footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.footer-links,
+.footer-copy {
+  margin: 0;
+  color: #6b7280; /* muted gray */
+  font-size: 14px;
+  line-height: 1.6;
+}
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.footer-item a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.footer-item a:hover,
+.footer-item a:focus {
+  text-decoration: underline;
+}
+.footer-sep {
+  opacity: 0.5;
+}
+
+/* Respect dark-ish backgrounds */
+@media (prefers-color-scheme: dark) {
+  .footer-links, .footer-copy { color: #9ca3af; }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .footer-links { gap: 8px; font-size: 13px; }
+  .footer-copy { font-size: 13px; }
+}
+
+/* Footer LinkedIn icon behavior */
+.footer-item a svg {
+  vertical-align: middle;
+  margin-right: 6px;
+  transition: transform 0.2s ease;
+}
+.footer-item a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Key image inside left proof card */
+.key-img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Center image vertically in ev-card */
+.proof__left .ev-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+/* Big interface shell */
+.evidence { padding: 40px 0; }
+.evidence-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.08); /* soft UI */
+}
+
+/* 2-col layout inside the shell */
+.evidence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* LEFT: remove outer card look */
+.evidence-left {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+/* If the left block currently uses a card class, neutralize it: */
+.evidence-left .card,
+.evidence-left .panel {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Keep inner pill elements styled; ensure their own shadows/borders remain */
+/* (Removed empty override block to avoid linter warning) */
+
+/* RIGHT: keep resume card feel */
+.evidence-right .card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+  border: 1px solid rgba(2, 6, 23, 0.05);
+}
+
+/* Responsive stack */
+@media (max-width: 900px) {
+  .evidence-shell { padding: 20px; border-radius: 16px; }
+  .evidence-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* default vertical rhythm for all sections */
+.section{ padding-block: clamp(var(--space-md), 8vw, var(--space-xl)); }
+
+/* tighter hero on mobile */
+.hero{ padding-block: clamp(var(--space-md), 6vw, var(--space-lg)); }
+
+/* normalize headings & paragraphs */
+h1,h2{ margin: 0 0 var(--space-md); }
+p{ margin: 0 0 var(--space-sm); }
+
+/* evidence shell spacing */
+.evidence-shell{ margin: 0; }
+
+/* remove accidental big gaps from components/cards */
+.card, .panel{ margin: 0; }
+
+/* last section before footer */
+.section-cta{ padding-block: clamp(var(--space-lg), 7vw, var(--space-xl)); margin: 0; }
+
+/* kill any fixed heights on small screens that cause white space */
+@media (max-width: 480px){
+  .hero,
+  .hero-inner,
+  .hero-bg{
+    min-height: auto !important;
+    height: auto !important;
+  }
+  /* if a gradient blob is oversized on mobile, cap it */
+  .blob, .blob-b1, .blob-b2, .blob-b3{
+    width: 100%;
+    max-height: 320px;
+  }
+}
+
+/* ===== CTA button: force black color (higher specificity) ===== */
+section#cta.section .container .btn.btn-primary{
+  background: #0B1220 !important;
+  background-color: #0B1220 !important;
+  color: #ffffff !important;
+  border-color: #0B1220 !important;
+}
+section#cta.section .container .btn.btn-primary:hover{
+  background: #0A0F1C !important;
+  background-color: #0A0F1C !important;
+}
+
+/* ===== CTA button: set to black with darker hover ===== */
+#cta .btn-primary{
+  background: #0B1220 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+#cta .btn-primary:hover{
+  background: #0A0F1C !important;
+}
